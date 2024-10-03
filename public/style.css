@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #d3d3d3;
+    padding-top: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 20px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    padding: 10px 20px;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #c0c0c0;
+}
+
+.profile-section {
+    flex: 1;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.admin {
+    font-size: 16px;
+    color: gray;
+    margin-left: 10px;
+}
+
+.logout {
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.info {
+    margin-bottom: 20px;
+}
+
+.info-item {
+    margin-bottom: 15px;
+}
+
+.info-item span {
+    display: inline-block;
+    width: 120px;
+    font-weight: bold;
+}
+
+.info-item input {
+    padding: 5px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #b0b0b0;
+}
