@@ -5,7 +5,7 @@
         <title>@yield('title', 'Название страницы')</title>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href={{ asset('style.css') }}>
+        <link rel="stylesheet" href={{ asset('css/style.css') }}>
     {{--    @vite(['resources/css/style.css'])--}}
 
         @yield('head-scripts')

@@ -80,6 +80,7 @@ header {
     font-size: 13px;
 }
 .logout {
+    font-size: 15px;
     display: flex;
     gap: 8px;
     align-items: center;
@@ -89,3 +90,74 @@ header {
 .logout:hover {
     color: #9A9A9A;
 }
+
+
+/* Авторизация */
+.auth-banner {
+    width: 50vw;
+    height: 100vh;
+    background-color: #F0F0EC;
+}
+.banner-img {
+    position: fixed;
+    bottom: -112px;
+    z-index: 1000;
+    width: 52vw;
+}
+.auth {
+    width: 50vw;
+    height: 100vh;
+    background-color: white;
+    padding: 60px 88px;
+}
+.auth img {
+    width: 100%;
+    margin-bottom: 50px;
+}
+.auth label {
+    font-size: 16px;
+}
+.auth input {
+    width: 100%;
+}
+.auth button {
+    padding: 10px 0;
+    background-color: #066A69;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 30px;
+
+    font-size: 25px;
+    font-weight: bold;
+    font-family: Involve, sans-serif;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+.auth button:hover {
+    background-color: #045a59;
+}
+.auth button:active {
+    background-color: #034544;
+}
+.auth label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.auth input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    color: #9A9A9A;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+.auth .error {
+    color: #E75254;
+    font-size: 12px;
+}
+
