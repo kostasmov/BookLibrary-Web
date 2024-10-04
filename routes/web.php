@@ -6,25 +6,31 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\IssuanceController;
 use App\Http\Controllers\UsersController;
 
+use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('profile');
+    return redirect()->route('auth');
 });
 
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::middleware([AuthMiddleware::class])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
-Route::get('/library', function () {
-    return view('library');
-})->name('library');
+    Route::get('/library', function () {
+        return view('library');
+    })->name('library');
 
-Route::get('/checkout-form', function () {
-    return view('checkout-form');
-})->name('checkout');
+    Route::get('/checkout-form', function () {
+        return view('checkout-form');
+    })->name('checkout');
+});
 
 Route::get('/users', [UsersController::class, 'index'])->name('users');
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
 Route::get('/issuances', [IssuanceController::class, 'index'])->name('issuances');
 
-Route::get('/auth', [AuthController::class, 'index']);
+Route::get('/auth', [AuthController::class, 'index'])->name('auth');
+Route::post('/auth', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
 

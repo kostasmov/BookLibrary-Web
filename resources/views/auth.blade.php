@@ -16,15 +16,18 @@
         <div class="auth">
             <img src="{{ asset('images/logo.png') }}" alt="Логотип">
 
-{{--            action="{{ route('auth-form') }}"--}}
-            <form method="post"  id="authForm">
+            <form method="post" id="authForm">
+                @csrf
+
                 <label for="login">Логин:</label>
                 <input type="text" id="login" name="login">
 
                 <label for="password">Пароль:</label>
                 <input type="password" id="password" name="password">
 
-                <span class="error"></span>
+                @if ($errors->any())
+                    <span class="error">{{ $errors->first() }}</span>
+                @endif
 
                 <button type="submit">Войти</button>
             </form>

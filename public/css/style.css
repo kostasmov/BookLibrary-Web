@@ -108,17 +108,14 @@ header {
     width: 50vw;
     height: 100vh;
     background-color: white;
-    padding: 60px 88px;
+    padding: 60px 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .auth img {
-    width: 100%;
+    width: 80%;
     margin-bottom: 50px;
-}
-.auth label {
-    font-size: 16px;
-}
-.auth input {
-    width: 100%;
 }
 .auth button {
     padding: 10px 0;
@@ -129,7 +126,7 @@ header {
     width: 100%;
     margin-top: 30px;
 
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
     font-family: Involve, sans-serif;
     color: white;
@@ -142,7 +139,11 @@ header {
 .auth button:active {
     background-color: #034544;
 }
+.auth form {
+    width: 80%;
+}
 .auth label {
+    font-size: 15px;
     display: block;
     font-weight: bold;
     margin-bottom: 10px;
@@ -152,7 +153,7 @@ header {
     padding: 12px;
     margin-bottom: 20px;
     color: #9A9A9A;
-    font-size: 16px;
+    font-size: 15px;
     border: 1px solid #ccc;
     border-radius: 10px;
 }

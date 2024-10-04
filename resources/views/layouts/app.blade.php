@@ -20,7 +20,7 @@
                     <span class="user-name">Иван Иванович</span>
                     <span class="user-role">role</span>
                 </span>
-                <a href="#" class="logout">
+                <a href="{{ route('logout') }}" class="logout">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>Выйти
                 </a>
             </header>
