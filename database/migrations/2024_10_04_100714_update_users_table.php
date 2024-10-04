@@ -13,8 +13,7 @@ return new class extends Migration
 
             $table->renameColumn('name', 'login');
 
-            $table->unsignedBigInteger('reader_id')->after('role');
-            $table->foreign('reader_id')->references('id')->on('readers')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('reader_id')->after('role')->unique()->constrained('readers')->onDelete('cascade');
         });
     }
 
