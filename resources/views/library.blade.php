@@ -11,6 +11,12 @@
 
 @section('head-scripts')
     <link rel="stylesheet" href={{ asset('css/control-bar.css') }}>
+    <style>
+        .pagination {
+            margin-top: 30px;
+            margin-bottom: 80px;
+        }
+    </style>
 @endsection
 
 @section('content')

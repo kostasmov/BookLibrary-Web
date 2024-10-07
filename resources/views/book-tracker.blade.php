@@ -54,7 +54,13 @@
                         @endif
                     </td>
                     <td>{{ $issuance->book_date }}</td>
-                    <td>{{ $issuance->return_date }}</td>
+                    <td
+                        @if (strtotime($issuance->return_date) < time() && $issuance->status === 'issued')
+                            class="expired"
+                        @endif
+                    >
+                        {{ $issuance->return_date }}
+                    </td>
                     <td><span class="status {{$issuance->status}}">
                             {{ $statuses[$issuance->status] }}
                         </span>

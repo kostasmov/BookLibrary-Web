@@ -60,25 +60,17 @@ table td {
 .status.issued {
     color: #3E4CD1;
 }
+.expired {
+    color: #E75254;
+    font-weight: bold;
+}
 
-/*.overdue {*/
-/*    color: red;*/
-/*    font-weight: bold;*/
-/*}*/
 
-/*.pagination {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    margin-top: 20px;*/
-/*}*/
-/*.pagination button,*/
-/*.pagination span {*/
-/*    border: none;*/
-/*    background: none;*/
-/*    font-size: 18px;*/
-/*    margin: 0 5px;*/
-/*    cursor: pointer;*/
-/*}*/
-/*.pagination button:hover {*/
-/*    color: #066A69;*/
-/*}*/
+/* Дополнение для пагинации */
+.pagination a {
+    border-radius: 10px;
+    background-color: #f0efec;
+}
+.pagination .disabled {
+    color: #cacac4;
+}
