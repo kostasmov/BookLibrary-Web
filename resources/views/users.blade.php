@@ -2,6 +2,10 @@
 
 @section('title', 'Профиль')
 
+@section('head-scripts')
+
+@endsection
+
 @section('content')
 
 @endsection

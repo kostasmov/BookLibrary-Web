@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\IssuanceController;
 use App\Http\Controllers\UsersController;
@@ -16,13 +17,11 @@ Route::get('/', function () {
 Route::middleware([AuthMiddleware::class])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
-    Route::get('/library', function () {
-        return view('library');
-    })->name('library');
+    Route::get('/library', [LibraryController::class, 'index'])->name('library');
 
-    Route::get('/checkout-form', function () {
-        return view('checkout-form');
-    })->name('checkout');
+    Route::get('/book-tracker', function () {
+        return view('book-tracker');
+    })->name('tracker');
 });
 
 Route::get('/users', [UsersController::class, 'index'])->name('users');

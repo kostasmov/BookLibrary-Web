@@ -8,6 +8,11 @@
         <link rel="stylesheet" href={{ asset('css/style.css') }}>
     {{--    @vite(['resources/css/style.css'])--}}
 
+        @php
+            $reader = auth()->user()->reader;
+            $full_name = $reader->first_name . ' ' . $reader->last_name
+        @endphp
+
         @yield('head-scripts')
     </head>
 
@@ -17,8 +22,8 @@
         <div class="content">
             <header>
                 <span class="user-info">
-                    <span class="user-name">Иван Иванович</span>
-                    <span class="user-role">role</span>
+                    <span class="user-name">{{ $full_name }}</span>
+                    <span class="user-role"> {{ auth()->user()->role }}</span>
                 </span>
                 <a href="{{ route('logout') }}" class="logout">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>Выйти
@@ -26,7 +31,7 @@
             </header>
 
             <div class="main-content">
-                <!-- Основной контент -->
+                @yield('content')
             </div>
 
             @yield('foot-scripts')

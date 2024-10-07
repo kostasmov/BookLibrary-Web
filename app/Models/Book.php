@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @method static paginate(int $int)
+ */
 class Book extends Model
 {
     use HasFactory;
@@ -16,11 +19,12 @@ class Book extends Model
         'publisher',
         'book_year',
         'amount',
-        'type'
+        'type',
+        'cover'
     ];
 
     public function authors(): BelongsToMany
     {
-        return $this->belongsToMany(Author::class);
+        return $this->belongsToMany(Author::class, 'author_book');
     }
 }

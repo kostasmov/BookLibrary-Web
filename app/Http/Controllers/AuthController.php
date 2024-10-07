@@ -23,6 +23,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($validatedData)) {
             $request->session()->regenerate();
+
             return redirect()->route('profile')->with('success', 'Авторизация пройдена');
         }
 
