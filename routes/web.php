@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookTrackerController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\ProfileController;
@@ -19,9 +20,7 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 
     Route::get('/library', [LibraryController::class, 'index'])->name('library');
 
-    Route::get('/book-tracker', function () {
-        return view('book-tracker');
-    })->name('tracker');
+    Route::get('/book-tracker', [BookTrackerController::class, 'index'])->name('tracker');
 });
 
 Route::get('/users', [UsersController::class, 'index'])->name('users');

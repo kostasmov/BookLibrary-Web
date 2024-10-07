@@ -2,55 +2,72 @@
 
 @section('title', 'Профиль')
 
-@section('content')
-{{--    <div class="table-container">--}}
-{{--        <div class="sort">--}}
-{{--            <label for="sort-select">Сортировать по: </label>--}}
-{{--            <select id="sort-select">--}}
-{{--                <option value="return-date">Дата возврата</option>--}}
-{{--                <!-- Дополнительные опции сортировки -->--}}
-{{--            </select>--}}
-{{--        </div>--}}
+@php
+    $statuses = [
+        'issued' => 'Выдана',
+        'pending' => 'На рассмотрении',
+        'returned' => 'Возвращена'
+    ]
+@endphp
 
-{{--        <table class="book-table">--}}
-{{--            <thead>--}}
-{{--            <tr>--}}
-{{--                <th>Название</th>--}}
-{{--                <th>Автор</th>--}}
-{{--                <th>Дата выдачи</th>--}}
-{{--                <th>Дата возврата</th>--}}
-{{--                <th>Состояние</th>--}}
-{{--            </tr>--}}
-{{--            </thead>--}}
-{{--            <tbody>--}}
-{{--            <tr>--}}
-{{--                <td>Введение в интеллектуальные системы</td>--}}
-{{--                <td>Валентин Константинов и др.</td>--}}
-{{--                <td>25.09.2024</td>--}}
-{{--                <td>25.03.2023</td>--}}
-{{--                <td><span class="status pending">На рассмотрении</span></td>--}}
-{{--            </tr>--}}
-{{--            <tr>--}}
-{{--                <td>Основы программирования</td>--}}
-{{--                <td>Игорь Черняков</td>--}}
-{{--                <td>25.02.2023</td>--}}
-{{--                <td>25.03.2023</td>--}}
-{{--                <td><span class="status returned">Возвращена</span></td>--}}
-{{--            </tr>--}}
-{{--            <tr>--}}
-{{--                <td>Совершенный код</td>--}}
-{{--                <td>Стив Макконнелл</td>--}}
-{{--                <td>25.03.2023</td>--}}
-{{--                <td><span class="overdue">25.04.2023</span></td>--}}
-{{--                <td><span class="status issued">Выдана</span></td>--}}
-{{--            </tr>--}}
-{{--            </tbody>--}}
-{{--        </table>--}}
+@section('head-scripts')
+    <link rel="stylesheet" href={{ asset('css/table.css') }}>
+@endsection
+
+@section('content')
+    <div class="table-container">
+        <div class="controls">
+            <div class="sort-container">
+                <label for="sort-select">Сортировать по: </label>
+                <select id="sort-select">
+                    <option value="return-date">Дата возврата</option>
+                    <option value="return-date">Дата выдачи</option>
+                    <option value="return-date">Название</option>
+                </select>
+            </div>
+
+            {{ $issuances->links('vendor.pagination.custom2') }}
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Автор</th>
+                <th>Дата выдачи</th>
+                <th>Дата возврата</th>
+                <th>Состояние</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($issuances as $issuance)
+                <tr>
+                    <td>{{ $issuance->book->title }}</td>
+                    <td>
+                        @if(count($issuance->book->authors) > 0)
+                            {{ $issuance->book->authors[0]->first_name }} {{ $issuance->book->authors[0]->last_name }}
+                            @if(count($issuance->book->authors) > 1)
+                                и др.
+                            @endif
+                        @else
+                            -
+                        @endif
+                    </td>
+                    <td>{{ $issuance->book_date }}</td>
+                    <td>{{ $issuance->return_date }}</td>
+                    <td><span class="status {{$issuance->status}}">
+                            {{ $statuses[$issuance->status] }}
+                        </span>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
 
 {{--        <div class="pagination">--}}
 {{--            <button class="prev-page">❮</button>--}}
 {{--            <span>1</span>--}}
 {{--            <button class="next-page">❯</button>--}}
 {{--        </div>--}}
-{{--    </div>--}}
+    </div>
 @endsection

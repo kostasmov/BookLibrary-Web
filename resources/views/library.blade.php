@@ -9,6 +9,10 @@
     ]
 @endphp
 
+@section('head-scripts')
+    <link rel="stylesheet" href={{ asset('css/control-bar.css') }}>
+@endsection
+
 @section('content')
     <div class="control-bar">
         <div class="search-bar">

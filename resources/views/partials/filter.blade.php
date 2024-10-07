@@ -9,7 +9,7 @@
                     <label for="lit1">Худ. литература</label>
                 </div>
                 <div class="filter-item">
-                    <input type="checkbox" id="lit2">
+                    <input type="checkbox" id="lit2" checked>
                     <label for="lit2">Техн. литература</label>
                 </div>
             </div>

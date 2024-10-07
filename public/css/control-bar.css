@@ -1,0 +1,88 @@
+.control-bar {
+    display: flex;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    gap: 16px;
+    font-size: 12px;
+}
+
+/* Поле поиска */
+.control-bar .search-bar {
+    position: relative;
+    display: block;
+    width: 27%;
+}
+.control-bar .search-bar input {
+    width: 100%;
+    padding: 8px 35px 8px 12px;
+    font-size: 12px;
+}
+.control-bar .search-bar i {
+    position: absolute;
+    left: 89%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9A9A9A;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+
+/* Поле сортировки */
+.control-bar .sort-container {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+    padding: 8px 12px;
+}
+.control-bar .sort-container label {
+    color: #9A9A9A;
+    margin-right: 5px;
+}
+.control-bar .sort-select {
+    font-size: 12px;
+    font-weight: bold;
+    background-color: white;
+    border: 0;
+    border-radius: 0;
+}
+.control-bar .sort-select option {
+    font-size: 12px;
+    font-weight: normal;
+    box-shadow: none;
+}
+
+
+/* Стили для фильтра */
+.control-bar .filter-button {
+    padding: 8px 12px;
+    display: flex;
+    gap: 8px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.control-bar .filter-container:hover .display-box {
+    display: block;
+}
+.control-bar .display-box {
+    display: none;
+    position: absolute;
+    padding-top: 5px;
+}
+.control-bar .filter-dropdown {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    z-index: 1;
+}
+.control-bar .filter-dropdown .filter-category {
+    padding: 10px;
+}
+.control-bar .filter-item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 5px 0;
+}

@@ -1,0 +1,84 @@
+/* Панель управления */
+.table-container {
+    width: 90%;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+.controls {
+    padding: 20px 23px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+}
+.sort-container {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+    padding: 6px 8px;
+    font-size: 10px;
+}
+.sort-container label {
+    color: #9A9A9A;
+    margin-right: 5px;
+}
+.sort-container select {
+    font-size: 10px;
+    font-weight: bold;
+    background-color: white;
+    border: 0;
+    border-radius: 0;
+}
+.sort-container select option {
+    font-size: 10px;
+    font-weight: normal;
+}
+
+
+/* Данные */
+table {
+    width: 100%;
+    background-color: white;
+}
+table th,
+table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+.status {
+    font-weight: bold;
+}
+.status.pending {
+    color: #FFCB44;
+}
+.status.returned {
+    color: #066A69;
+}
+.status.issued {
+    color: #3E4CD1;
+}
+
+/*.overdue {*/
+/*    color: red;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*.pagination {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    margin-top: 20px;*/
+/*}*/
+/*.pagination button,*/
+/*.pagination span {*/
+/*    border: none;*/
+/*    background: none;*/
+/*    font-size: 18px;*/
+/*    margin: 0 5px;*/
+/*    cursor: pointer;*/
+/*}*/
+/*.pagination button:hover {*/
+/*    color: #066A69;*/
+/*}*/
