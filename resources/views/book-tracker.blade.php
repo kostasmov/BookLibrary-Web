@@ -55,13 +55,14 @@
                     </td>
                     <td>{{ $issuance->book_date }}</td>
                     <td
-                        @if (strtotime($issuance->return_date) < time() && $issuance->status === 'issued')
+                        @if(strtotime($issuance->return_date) < time() && $issuance->status === 'issued')
                             class="expired"
                         @endif
                     >
                         {{ $issuance->return_date }}
                     </td>
-                    <td><span class="status {{$issuance->status}}">
+                    <td>
+                        <span class="status {{$issuance->status}}">
                             {{ $statuses[$issuance->status] }}
                         </span>
                     </td>
@@ -69,11 +70,5 @@
             @endforeach
             </tbody>
         </table>
-
-{{--        <div class="pagination">--}}
-{{--            <button class="prev-page">❮</button>--}}
-{{--            <span>1</span>--}}
-{{--            <button class="next-page">❯</button>--}}
-{{--        </div>--}}
     </div>
 @endsection
