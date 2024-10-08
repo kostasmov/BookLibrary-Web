@@ -10,11 +10,13 @@
 
 @section('content')
     <div class="section">
-        <form>
+        <form method="post" action="{{ route('profile.update') }}">
+            @csrf
+
             <div class="form-row">
                 <div class="form-input">
                     <label for="login">Логин</label>
-                    <input type="text" id="login" name="login" value="{{ auth()->user()->login }}">
+                    <input type="text" id="login" name="login" value="{{ auth()->user()->login }}" required>
                 </div>
                 <div class="form-input">
                     <label for="email">Почта</label>
@@ -32,26 +34,36 @@
                 </div>
             </div>
             <div class="button-row">
-                <button type="button">Сохранить</button>
+                <button type="submit">Сохранить</button>
             </div>
         </form>
     </div>
 
     <div class="section">
-        <form>
+        <form method="post" action="{{ route('password.update') }}">
+            @csrf
+
             <div class="form-row">
                 <div class="form-input">
                     <label for="old-pass">Старый пароль</label>
-                    <input type="password" id="old-pass" name="old-pass">
+                    <input type="password" id="old-pass" name="old-pass" required>
                 </div>
                 <div class="form-input">
                     <label for="new-pass">Новый пароль</label>
-                    <input type="password" id="new-pass" name="new-pass">
+                    <input type="password" id="new-pass" name="new-pass" required>
                 </div>
             </div>
             <div class="button-row">
-                <button type="button">Изменить пароль</button>
+                <button type="submit">Изменить пароль</button>
             </div>
         </form>
     </div>
+
+    @if (session('update-success'))
+        <script>alert( '{{ session('update-success') }}' );</script>
+    @endif
+
+    @if ($errors->any())
+        <script>alert( '{{ $errors->first() }}' );</script>
+    @endif
 @endsection

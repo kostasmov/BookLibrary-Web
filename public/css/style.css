@@ -265,7 +265,7 @@ header {
 }
 .section input {
     width: 362px;
-    padding: 8px 20px;
+    padding: 8px 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -286,7 +286,16 @@ header {
     background-color: #ffb800;
     color: #4a3b00;
 }
-
+/*.alert {*/
+/*    font-size: 12px;*/
+/*    margin-bottom: 10px;*/
+/*}*/
+/*.alert-success {*/
+/*    color: #066A69;*/
+/*}*/
+/*.alert-danger {*/
+/*    color: #E75254;*/
+/*}*/
 
 /* Авторизация */
 .auth-banner {
