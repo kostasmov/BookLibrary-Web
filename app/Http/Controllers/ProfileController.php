@@ -20,9 +20,9 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $validatedData = $request->validate([
-            'login' => 'required|string|max:20',
-            'email' => 'nullable|email|max:255',
-            'phone' => 'nullable|regex:/^\+[0-9]{11}$/',
+            'login' => 'required|string|max:20|unique:users,login',
+            'email' => 'nullable|email|max:255|unique:readers,email',
+            'phone' => 'nullable|regex:/^\+[0-9]{11}$/|unique:readers,phone',
         ]);
 
         $user->login = $validatedData['login'];

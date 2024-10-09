@@ -20,6 +20,29 @@
     padding: 6px 8px;
     font-size: 10px;
 }
+.functions-right,
+.functions-left {
+    display: flex;
+    gap: 10px;
+}
+.controls button {
+    padding: 5px 10px;
+    align-content: center;
+    border-radius: 5px;
+    font-size: 10px;
+    background-color: #066A69;
+    color: white;
+}
+.controls button span {
+    margin-left: 5px;
+}
+.controls button:hover {
+    background-color: #045a59;
+    font-weight: bold;
+}
+
+
+/* Выбор сортировки */
 .sort-container label {
     color: #9A9A9A;
     margin-right: 5px;
@@ -34,6 +57,28 @@
 .sort-container select option {
     font-size: 10px;
     font-weight: normal;
+}
+
+
+/* Поле поиска */
+.search-bar {
+    position: relative;
+    display: block;
+    width: 200px;
+}
+.search-bar input {
+    width: 100%;
+    padding: 8px 35px 8px 12px;
+    font-size: 10px;
+}
+.search-bar i {
+    position: absolute;
+    left: 89%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9A9A9A;
+    font-size: 12px;
+    pointer-events: none;
 }
 
 
@@ -78,6 +123,15 @@ tr:last-child td {
 .pagination a {
     border-radius: 10px;
     background-color: #f0efec;
+    font-weight: bold;
+}
+.pagination .enabled {
+    background-color: #066A69;
+    color: white;
+}
+.pagination .enabled:hover {
+    color: white;
+    background-color: #048080;
 }
 .pagination .disabled {
     color: #cacac4;

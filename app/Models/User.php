@@ -14,6 +14,8 @@ use Illuminate\Notifications\Notifiable;
  * @property mixed $email
  * @property mixed $password
  * @property mixed $role
+ * @method static where(string $string, $id)
+ * @method static paginate(int $int)
  */
 class User extends Authenticatable
 {

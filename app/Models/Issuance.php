@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @method static where(string $string, $id)
  * @method static create(array $array)
+ * @method static paginate(int $int)
  */
 class Issuance extends Model
 {

@@ -26,7 +26,7 @@
                 </select>
             </div>
 
-{{--            {{ $issuances->links('vendor.pagination.custom2') }}--}}
+            {{ $issuances->links('vendor.pagination.custom2') }}
         </div>
 
         <table>
