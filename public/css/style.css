@@ -199,18 +199,29 @@ header {
     border-radius: 5px;
     font-size: 10px;
 }
-/*.available {*/
-/*    background-color: #ffcc33;*/
-/*    color: white;*/
-/*}*/
-/*.on-hands {*/
-/*    background-color: #66cc66;*/
-/*    color: white;*/
-/*}*/
-/*.not-available {*/
-/*    background-color: #ccc;*/
-/*    color: #777;*/
-/*}*/
+.available button {
+    background-color: #FFCB44;
+    color: black;
+}
+.available button:hover {
+    background-color: #ffb800;
+    color: #4a3b00;
+}
+.issued button {
+    background-color: #C8FFEF;
+    color: #066A69;
+    pointer-events: none;
+}
+.not-available button {
+    background-color: #F0F4F4;
+    color: #066A69;
+    pointer-events: none;
+}
+.pending button {
+    background-color: #FFEDBD;
+    color: #4A3B00;
+    pointer-events: none;
+}
 
 
 /* Пагинация */

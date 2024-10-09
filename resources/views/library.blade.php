@@ -6,7 +6,14 @@
     $book_types = [
         'technic' => 'Техн. литература',
         'fiction' => 'Худ. литература'
-    ]
+    ];
+
+    $book_statuses = [
+        'issued' => 'На руках',
+        'pending' => 'На проверке',
+        'available' => 'Взять на дом',
+        'not-available' => 'Не доступна'
+    ];
 @endphp
 
 @section('head-scripts')

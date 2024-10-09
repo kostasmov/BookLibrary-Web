@@ -10,7 +10,7 @@ class BookTrackerController extends Controller
 {
     public function index(): View
     {
-        $issuances = Issuance::where('reader_id', auth()->user()->reader->id)->paginate(3);
+        $issuances = Issuance::where('reader_id', auth()->user()->reader->id)->paginate(10);
         return view('book-tracker', compact('issuances'));
     }
 }

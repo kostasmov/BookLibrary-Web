@@ -18,8 +18,10 @@
             @endif
         </div>
         <div class="publishing">{{ $book->publisher }}, {{ $book->book_year }}</div>
-        <div class="actions">
-            <button>Взять на дом</button>
+
+        <div class="actions {{ $book->status }}">
+            <button>{{ $book_statuses[$book->status] }}</button>
         </div>
+
     </div>
 </div>
