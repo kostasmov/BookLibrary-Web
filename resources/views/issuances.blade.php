@@ -22,22 +22,23 @@
                     <input type="text" placeholder="Поиск...">
                     <i class="fas fa-search"></i>
                 </div>
+
+                <div class="sort-container">
+                    <label for="sort-select">Сортировать по: </label>
+                    <select id="sort-select">
+                        <option value="return-date">Дата возврата</option>
+                        <option value="return-date">Дата выдачи</option>
+                        <option value="return-date">Книга</option>
+                    </select>
+                </div>
             </div>
-{{--            <div class="sort-container">--}}
-{{--                <label for="sort-select">Сортировать по: </label>--}}
-{{--                <select id="sort-select">--}}
-{{--                    <option value="return-date">Название</option>--}}
-{{--                    <option value="return-date">Автор</option>--}}
-{{--                    <option value="return-date">Издатель</option>--}}
-{{--                    <option value="return-date">Количество</option>--}}
-{{--                </select>--}}
-{{--            </div>--}}
+
             <div class="functions-right">
                 {{ $issuances->links('vendor.pagination.custom2') }}
             </div>
         </div>
 
-        <table>
+        <table id="info-table">
             <thead>
             <tr>
                 <th>Книга</th>
@@ -69,4 +70,8 @@
             </tbody>
         </table>
     </div>
+@endsection
+
+@section('foot-scripts')
+    <script src="{{ asset('js/table.js') }}"></script>
 @endsection

@@ -34,9 +34,10 @@
             </div>
         </div>
 
-        <table>
+        <table id="info-table">
             <thead>
             <tr>
+                <th></th>
                 <th>Название</th>
                 <th>Имя</th>
                 <th>Роль</th>
@@ -48,10 +49,11 @@
             <tbody>
             @foreach ($users as $user)
                 <tr>
+                    <td><i class="fa-solid fa-pen-to-square"></i></td>
                     <td>{{ $user->login }}</td>
                     <td>{{ $user->reader->first_name }} {{ $user->reader->last_name }}</td>
                     <td>{{ $user->role }}</td>
-                    <td>{{ $user->reader->group ?? '-' }}</td>
+                    <td>{{ $user->reader->group_code ?? '-' }}</td>
                     <td>{{ $user->reader->email ?? '-' }}</td>
                     <td>{{ $user->reader->phone ?? '-' }}</td>
                 </tr>
@@ -59,4 +61,8 @@
             </tbody>
         </table>
     </div>
+@endsection
+
+@section('foot-scripts')
+    <script src="{{ asset('js/table.js') }}"></script>
 @endsection

@@ -101,6 +101,9 @@ tr th:first-child{
 tr:last-child td {
     border-bottom: 0;
 }
+td i {
+    cursor: pointer;
+}
 .status {
     font-weight: bold;
 }
@@ -116,6 +119,9 @@ tr:last-child td {
 .expired {
     color: #E75254;
     font-weight: bold;
+}
+.selected {
+    background-color: #f0f0f0;
 }
 
 

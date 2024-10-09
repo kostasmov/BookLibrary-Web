@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <table>
+        <table id="info-table">
             <thead>
             <tr>
                 <th></th>
@@ -60,4 +60,8 @@
             </tbody>
         </table>
     </div>
+@endsection
+
+@section('foot-scripts')
+    <script src="{{ asset('js/table.js') }}"></script>
 @endsection
