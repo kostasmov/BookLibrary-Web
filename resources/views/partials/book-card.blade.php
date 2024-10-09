@@ -20,7 +20,10 @@
         <div class="publishing">{{ $book->publisher }}, {{ $book->book_year }}</div>
 
         <div class="actions {{ $book->status }}">
-            <button>{{ $book_statuses[$book->status] }}</button>
+            <form action="{{ route('library.request', $book->id) }}" method="POST">
+                @csrf
+                <button type="submit">{{ $book_statuses[$book->status] }}</button>
+            </form>
         </div>
 
     </div>

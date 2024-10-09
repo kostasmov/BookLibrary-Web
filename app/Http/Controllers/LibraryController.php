@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Issuance;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -45,5 +46,35 @@ class LibraryController extends Controller
         }
 
         return 'available';
+    }
+
+    public function makeRequest(Request $request, $bookId):  RedirectResponse
+    {
+        $book = Book::findOrFail($bookId);
+        $user = Auth::user();
+
+        $hasIssuedBooks = Issuance::where('reader_id', $user->reader->id)
+            ->where('status', 'issued')
+            ->exists();
+
+        if ($hasIssuedBooks) {
+            return redirect()->back()->withErrors('Невозможно подать заявку: имеются невозвращённые книги.');
+        }
+
+        $pendingRequestsCount = Issuance::where('reader_id', $user->reader->id)
+            ->where('status', 'pending')
+            ->count();
+
+        if ($pendingRequestsCount >= 3) {
+            return redirect()->back()->withErrors('Число заявок превышает 3!');
+        }
+
+        Issuance::create([
+            'reader_id' => $user->id,
+            'book_id' => $book->id,
+            'status' => 'pending',
+        ]);
+
+        return redirect()->route('tracker')->with('success', 'Заявка отправлена!');
     }
 }

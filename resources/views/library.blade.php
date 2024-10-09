@@ -52,4 +52,8 @@
     </div>
 
     {{ $books->links('vendor.pagination.custom') }}
+
+    @if ($errors->any())
+        <script>alert( '{{ $errors->first() }}' );</script>
+    @endif
 @endsection

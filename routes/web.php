@@ -21,6 +21,7 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::post('/profile/pass-update', [ProfileController::class, 'updatePassword'])->name('password.update');
 
     Route::get('/library', [LibraryController::class, 'index'])->name('library');
+    Route::post('/library/request/{bookID}', [LibraryController::class, 'makeRequest'])->name('library.request');
 
     Route::get('/book-tracker', [BookTrackerController::class, 'index'])->name('tracker');
 });
