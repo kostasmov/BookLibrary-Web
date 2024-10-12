@@ -74,6 +74,7 @@
     justify-content: center;
 }
 
+
 .modal-content button {
     background-color: #FFCB44;
     width: 47%;
@@ -86,6 +87,7 @@
 .modal-content button:active {
     background-color: #c88e00;
 }
+
 
 .modal-content input {
     padding: 10px 13px;

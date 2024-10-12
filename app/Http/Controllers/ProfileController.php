@@ -6,6 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -20,9 +21,23 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $validatedData = $request->validate([
-            'login' => 'required|string|max:20|unique:users,login',
-            'email' => 'nullable|email|max:255|unique:readers,email',
-            'phone' => 'nullable|regex:/^\+[0-9]{11}$/|unique:readers,phone',
+            'login' => [
+                'required',
+                'string',
+                'max:20',
+                Rule::unique('users')->ignore($user->id),
+            ],
+            'email' => [
+                'nullable',
+                'email',
+                'max:255',
+                Rule::unique('readers', 'email')->ignore($user->reader->id),
+            ],
+            'phone' => [
+                'nullable',
+                'regex:/^\+[0-9]{11}$/',
+                Rule::unique('readers', 'phone')->ignore($user->reader->id),
+            ],
         ]);
 
         $user->login = $validatedData['login'];

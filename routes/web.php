@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\IssuanceController;
 use App\Http\Controllers\UsersController;
 
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -26,9 +27,12 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::get('/book-tracker', [BookTrackerController::class, 'index'])->name('tracker');
 });
 
-Route::get('/users', [UsersController::class, 'index'])->name('users');
-Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
-Route::get('/issuances', [IssuanceController::class, 'index'])->name('issuances');
+
+Route::middleware([AdminMiddleware::class])->group(function () {
+    Route::get('/users', [UsersController::class, 'index'])->name('users');
+    Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
+    Route::get('/issuances', [IssuanceController::class, 'index'])->name('issuances');
+});
 
 Route::get('/auth', [AuthController::class, 'index'])->name('auth');
 Route::post('/auth', [AuthController::class, 'login']);

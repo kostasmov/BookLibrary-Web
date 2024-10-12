@@ -67,7 +67,7 @@
         <div class="modal-content">
             <div class="form-row">
                 <h2>Регистрация читателя</h2>
-{{--                <span class="close"><i class="fa-solid fa-xmark"></i></span>--}}
+                <span class="close"><i class="fa-solid fa-xmark"></i></span>
             </div>
 
             <form class="form-container">
