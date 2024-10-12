@@ -30,6 +30,7 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 
 Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/users', [UsersController::class, 'index'])->name('users');
+
     Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
     Route::get('/issuances', [IssuanceController::class, 'index'])->name('issuances');
 });
