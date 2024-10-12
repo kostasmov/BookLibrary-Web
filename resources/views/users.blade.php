@@ -5,10 +5,6 @@
 @section('head-scripts')
     <link rel="stylesheet" href={{ asset('css/table.css') }}>
     <link rel="stylesheet" href={{ asset('css/modal.css') }}>
-
-    @php
-        $userId = 0;
-    @endphp
 @endsection
 
 @section('content')
@@ -100,12 +96,12 @@
         const openEditModalButtons = document.querySelectorAll(".edit-btn");
         const editCloseModalButton = document.getElementById("edit-close");
 
-        let userId = 1;
+        // let userId = 1;
 
         openEditModalButtons.forEach(button => {
             button.addEventListener("click", function() {
-                userId = event.target.id.match(/edit-btn-(\d+)/)[1];
-                console.log(userId);
+                // userId = event.target.id.match(/edit-btn-(\d+)/)[1];
+                // console.log(userId);
 
                 const row = button.closest('tr');
                 const cells = row.getElementsByTagName("td");
@@ -120,7 +116,7 @@
                 document.getElementById("edit-firstName").value = first_name;
                 document.getElementById("edit-lastName").value = last_name;
                 document.getElementById("edit-login").value = login;
-                document.getElementById("edit-group").value = group || '';
+                document.getElementById("edit-group").value = group;
 
                 editModal.style.display = "flex";
             });
