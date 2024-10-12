@@ -208,7 +208,9 @@ header {
 }
 .available button:hover {
     background-color: #ffb800;
-    color: #4a3b00;
+}
+.available button:active {
+    background-color: #c88e00;
 }
 .issued button {
     background-color: #C8FFEF;
@@ -298,18 +300,10 @@ header {
 }
 .section button:hover {
     background-color: #ffb800;
-    color: #4a3b00;
 }
-/*.alert {*/
-/*    font-size: 12px;*/
-/*    margin-bottom: 10px;*/
-/*}*/
-/*.alert-success {*/
-/*    color: #066A69;*/
-/*}*/
-/*.alert-danger {*/
-/*    color: #E75254;*/
-/*}*/
+.section button:active {
+    background-color: #c88e00;
+}
 
 /* Авторизация */
 .auth-banner {

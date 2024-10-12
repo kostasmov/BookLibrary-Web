@@ -4,6 +4,7 @@
 
 @section('head-scripts')
     <link rel="stylesheet" href={{ asset('css/table.css') }}>
+    <link rel="stylesheet" href={{ asset('css/modal.css') }}>
 @endsection
 
 @section('content')
@@ -26,7 +27,7 @@
             </div>
 
             <div class="functions-right">
-                <button>
+                <button id="openModalBtn">
                     <i class="fa-sharp fa-solid fa-plus"></i>
                     <span>Добавить</span>
                 </button>
@@ -61,8 +62,73 @@
             </tbody>
         </table>
     </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="form-row">
+                <h2>Регистрация читателя</h2>
+{{--                <span class="close"><i class="fa-solid fa-xmark"></i></span>--}}
+            </div>
+
+            <form class="form-container">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">Имя:</label>
+                        <input type="text" id="firstName" name="firstName">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Фамилия:</label>
+                        <input type="text" id="lastName" name="lastName">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="login">Логин:</label>
+                        <input type="text" id="login" name="login">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Пароль:</label>
+                        <input type="text" id="password" name="password">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="group">Группа:</label>
+                        <input type="text" id="group" name="group">
+                    </div>
+                </div>
+
+                <div class="form-row button-row">
+                    <button type="submit">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection
 
 @section('foot-scripts')
     <script src="{{ asset('js/table.js') }}"></script>
+
+    <script>
+        /**
+         * @type {HTMLDivElement}
+         */
+        const modal = document.getElementById("modal");
+        const openModalBtn = document.getElementById("openModalBtn");
+        const closeBtn = document.getElementsByClassName("close")[0];
+
+        openModalBtn.onclick = function() {
+            modal.style.display = 'flex';
+            // modal.style.justifyContent = 'center';
+            // modal.style.alignContent = 'center;'
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+    </script>
 @endsection

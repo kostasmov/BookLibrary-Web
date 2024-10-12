@@ -40,6 +40,9 @@
     background-color: #045a59;
     font-weight: bold;
 }
+.controls button:active {
+    background-color: #034544;
+}
 
 
 /* Выбор сортировки */
@@ -138,6 +141,9 @@ td i {
 .pagination .enabled:hover {
     color: white;
     background-color: #048080;
+}
+.pagination .enabled:active {
+    background-color: #034544;
 }
 .pagination .disabled {
     color: #cacac4;
