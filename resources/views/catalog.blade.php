@@ -28,7 +28,7 @@
             </div>
 
             <div class="functions-right">
-                <button id="bookAddBtn">
+                <button id="bookCreateBtn">
                     <i class="fa-sharp fa-solid fa-plus"></i>
                     <span>Добавить</span>
                 </button>
@@ -51,10 +51,25 @@
             </thead>
             <tbody>
             @foreach ($books as $book)
-                <tr>
-                    <td><i id="edit-btn-{{ $book->id }}" class="edit-btn fa-solid fa-pen-to-square"></i></td>
+                <tr id="book-{{ $book->id }}">
+                    <td><i class="edit-btn fa-solid fa-pen-to-square"></i></td>
                     <td>{{ $book->title }}</td>
-                    <td>{{ $book->authors[0]->last_name ?? '-' }}</td>
+
+                    <td>
+                        @if(isset($book->authors) && count($book->authors) > 0)
+                            @if(!empty($book->authors[0]->last_name))
+                                {{ mb_substr($book->authors[0]->first_name, 0, 1) }}. {{ $book->authors[0]->last_name }}
+                            @else
+                                {{ $book->authors[0]->first_name }}
+                            @endif
+                            @if(count($book->authors) > 1)
+                                    и др.
+                            @endif
+                        @else
+                            -
+                        @endif
+                    </td>
+
                     <td>{{ $book->publisher }}</td>
                     <td>{{ $book->book_year }}</td>
                     <td>{{ $book->type }}</td>
@@ -66,7 +81,7 @@
         </table>
     </div>
 
-    @include('partials.book-add-modal')
+    @include('partials.book-create-modal')
     @include('partials.book-edit-modal')
 
 @endsection
@@ -78,15 +93,15 @@
         /**
          * @type {HTMLDivElement}
          */
-        const addBookModal = document.getElementById("add-modal");
-        const openBookAddModalButton = document.getElementById("bookAddBtn");
-        const addCloseModalButton = document.getElementById("add-close");
+        const addBookModal = document.getElementById("create-modal");
+        const openBookAddModalButton = document.getElementById("bookCreateBtn");
+        const addCloseModalButton = document.getElementById("create-close");
 
-        openBookAddModalButton.onclick = function() {
+        openBookAddModalButton.onclick = function () {
             addBookModal.style.display = 'flex';
         }
 
-        addCloseModalButton.onclick = function() {
+        addCloseModalButton.onclick = function () {
             addBookModal.style.display = "none";
         }
     </script>
@@ -99,33 +114,15 @@
         const openEditModalButtons = document.querySelectorAll(".edit-btn");
         const editCloseModalButton = document.getElementById("edit-close");
 
-        // let bookId = 1;
-
         openEditModalButtons.forEach(button => {
-            button.addEventListener("click", function() {
-                // bookId = event.target.id.match(/edit-btn-(\d+)/)[1];
-                // console.log(bookId);
-
-                const row = button.closest('tr');
-                const cells = row.getElementsByTagName("td");
-
-                // let login = cells[1].innerText;
-                // let group = (cells[4].innerText !== '-') ? cells[4].innerText : '';
-                //
-                // let name = cells[2].innerText.split(' ');
-                // let first_name = name[0];
-                // let last_name = name[1];
-                //
-                // document.getElementById("edit-firstName").value = first_name;
-                // document.getElementById("edit-lastName").value = last_name;
-                // document.getElementById("edit-login").value = login;
-                // document.getElementById("edit-group").value = group || '';
+            button.addEventListener("click", function () {
+                // Заполнение формы
 
                 editModal.style.display = "flex";
             });
         });
 
-        editCloseModalButton.onclick = function() {
+        editCloseModalButton.onclick = function () {
             editModal.style.display = "none";
         }
     </script>

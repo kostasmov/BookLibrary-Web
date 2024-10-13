@@ -9,7 +9,8 @@
         $statuses = [
             'issued' => 'Выдана',
             'pending' => 'На рассмотрении',
-            'returned' => 'Возвращена'
+            'returned' => 'Возвращена',
+            'rejected' => 'Отказано'
         ]
     @endphp
 @endsection
@@ -50,7 +51,7 @@
             </thead>
             <tbody>
             @foreach ($issuances as $issuance)
-                <tr>
+                <tr id="issuance-{{ $issuance->id }}">
                     <td>{{ $issuance->book->title }}</td>
                     <td>{{ mb_substr($issuance->reader->first_name, 0, 1) }}. {{ $issuance->reader->last_name  }}</td>
                     <td>{{ $issuance->book_date ?? '-' }}</td>

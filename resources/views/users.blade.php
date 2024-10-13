@@ -49,8 +49,8 @@
             </thead>
             <tbody>
             @foreach ($users as $user)
-                <tr>
-                    <td><i id="edit-btn-{{ $user->id }}" class="edit-btn fa-solid fa-pen-to-square"></i></td>
+                <tr id="user-{{ $user->id }}">
+                    <td><i class="edit-btn fa-solid fa-pen-to-square"></i></td>
                     <td>{{ $user->login }}</td>
                     <td>{{ $user->reader->first_name }} {{ $user->reader->last_name }}</td>
                     <td>{{ $user->role }}</td>
@@ -96,15 +96,13 @@
         const openEditModalButtons = document.querySelectorAll(".edit-btn");
         const editCloseModalButton = document.getElementById("edit-close");
 
-        // let userId = 1;
-
         openEditModalButtons.forEach(button => {
             button.addEventListener("click", function() {
-                // userId = event.target.id.match(/edit-btn-(\d+)/)[1];
-                // console.log(userId);
-
                 const row = button.closest('tr');
                 const cells = row.getElementsByTagName("td");
+
+                // let userId = row.id.match(/user-(\d+)/)[1];
+                // console.log(userId);
 
                 let login = cells[1].innerText;
                 let group = (cells[4].innerText !== '-') ? cells[4].innerText : '';

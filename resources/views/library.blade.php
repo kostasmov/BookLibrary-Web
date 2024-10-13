@@ -42,7 +42,7 @@
             </select>
         </div>
 
-        @include('partials.filter')
+{{--        @include('partials.filter')--}}
     </div>
 
     <div class="book-grid">

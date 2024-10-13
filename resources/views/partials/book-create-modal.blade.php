@@ -1,8 +1,8 @@
-<div id="add-modal" class="modal">
+<div id="create-modal" class="modal">
     <div class="modal-content">
         <div class="form-row">
-            <h2>Регистрация читателя</h2>
-            <span id="add-close" class="close"><i class="fa-solid fa-xmark"></i></span>
+            <h2>Добавление книги</h2>
+            <span id="create-close" class="close"><i class="fa-solid fa-xmark"></i></span>
         </div>
 
         <form class="form-container">
