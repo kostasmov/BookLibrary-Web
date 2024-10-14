@@ -11,10 +11,7 @@
     <div class="table-container">
         <div class="controls">
             <div class="functions-left">
-                <div class="search-bar">
-                    <input type="text" placeholder="Поиск...">
-                    <i class="fas fa-search"></i>
-                </div>
+                @include('partials.search-bar')
 
                 <div class="sort-container">
                     <label for="sort-select">Сортировать по: </label>
@@ -81,49 +78,49 @@
         </table>
     </div>
 
-    @include('partials.book-create-modal')
-    @include('partials.book-edit-modal')
+{{--    @include('partials.book-create-modal')--}}
+{{--    @include('partials.book-edit-modal')--}}
 
 @endsection
 
 @section('foot-scripts')
     <script src="{{ asset('js/table.js') }}"></script>
 
-    <script>
-        /**
-         * @type {HTMLDivElement}
-         */
-        const addBookModal = document.getElementById("create-modal");
-        const openBookAddModalButton = document.getElementById("bookCreateBtn");
-        const addCloseModalButton = document.getElementById("create-close");
+{{--    <script>--}}
+{{--        /**--}}
+{{--         * @type {HTMLDivElement}--}}
+{{--         */--}}
+{{--        const addBookModal = document.getElementById("create-modal");--}}
+{{--        const openBookAddModalButton = document.getElementById("bookCreateBtn");--}}
+{{--        const addCloseModalButton = document.getElementById("create-close");--}}
 
-        openBookAddModalButton.onclick = function () {
-            addBookModal.style.display = 'flex';
-        }
+{{--        openBookAddModalButton.onclick = function () {--}}
+{{--            addBookModal.style.display = 'flex';--}}
+{{--        }--}}
 
-        addCloseModalButton.onclick = function () {
-            addBookModal.style.display = "none";
-        }
-    </script>
+{{--        addCloseModalButton.onclick = function () {--}}
+{{--            addBookModal.style.display = "none";--}}
+{{--        }--}}
+{{--    </script>--}}
 
-    <script>
-        /**
-         * @type {HTMLDivElement}
-         */
-        const editModal = document.getElementById("edit-modal");
-        const openEditModalButtons = document.querySelectorAll(".edit-btn");
-        const editCloseModalButton = document.getElementById("edit-close");
+{{--    <script>--}}
+{{--        /**--}}
+{{--         * @type {HTMLDivElement}--}}
+{{--         */--}}
+{{--        const editModal = document.getElementById("edit-modal");--}}
+{{--        const openEditModalButtons = document.querySelectorAll(".edit-btn");--}}
+{{--        const editCloseModalButton = document.getElementById("edit-close");--}}
 
-        openEditModalButtons.forEach(button => {
-            button.addEventListener("click", function () {
-                // Заполнение формы
+{{--        openEditModalButtons.forEach(button => {--}}
+{{--            button.addEventListener("click", function () {--}}
+{{--                // Заполнение формы--}}
 
-                editModal.style.display = "flex";
-            });
-        });
+{{--                editModal.style.display = "flex";--}}
+{{--            });--}}
+{{--        });--}}
 
-        editCloseModalButton.onclick = function () {
-            editModal.style.display = "none";
-        }
-    </script>
+{{--        editCloseModalButton.onclick = function () {--}}
+{{--            editModal.style.display = "none";--}}
+{{--        }--}}
+{{--    </script>--}}
 @endsection

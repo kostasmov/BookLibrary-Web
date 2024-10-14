@@ -28,10 +28,7 @@
 
 @section('content')
     <div class="control-bar">
-        <div class="search-bar">
-            <input type="text" placeholder="Поиск...">
-            <i class="fas fa-search"></i>
-        </div>
+        @include('partials.search-bar')
 
         <div class="sort-container">
             <label for="sort">Сортировать по:</label>

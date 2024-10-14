@@ -10,11 +10,9 @@
 @section('content')
     <div class="table-container">
         <div class="controls">
+
             <div class="functions-left">
-                <div class="search-bar">
-                    <input type="text" placeholder="Поиск...">
-                    <i class="fas fa-search"></i>
-                </div>
+                @include('partials.search-bar')
 
                 <div class="sort-container">
                     <label for="sort-select">Сортировать по: </label>
@@ -63,65 +61,65 @@
         </table>
     </div>
 
-    @include('partials.user-register-modal')
-    @include('partials.user-edit-modal')
+{{--    @include('partials.user-register-modal')--}}
+{{--    @include('partials.user-edit-modal')--}}
 
 @endsection
 
 @section('foot-scripts')
     <script src="{{ asset('js/table.js') }}"></script>
 
-    <script>
-        /**
-         * @type {HTMLDivElement}
-         */
-        const registerModal = document.getElementById("register-modal");
-        const openUserModalButton = document.getElementById("userRegisterBtn");
-        const registerCloseModalButton = document.getElementById("register-close");
+{{--    <script>--}}
+{{--        /**--}}
+{{--         * @type {HTMLDivElement}--}}
+{{--         */--}}
+{{--        const registerModal = document.getElementById("register-modal");--}}
+{{--        const openUserModalButton = document.getElementById("userRegisterBtn");--}}
+{{--        const registerCloseModalButton = document.getElementById("register-close");--}}
 
-        openUserModalButton.onclick = function() {
-            registerModal.style.display = 'flex';
-        }
+{{--        openUserModalButton.onclick = function() {--}}
+{{--            registerModal.style.display = 'flex';--}}
+{{--        }--}}
 
-        registerCloseModalButton.onclick = function() {
-            registerModal.style.display = "none";
-        }
-    </script>
+{{--        registerCloseModalButton.onclick = function() {--}}
+{{--            registerModal.style.display = "none";--}}
+{{--        }--}}
+{{--    </script>--}}
 
-    <script>
-        /**
-         * @type {HTMLDivElement}
-         */
-        const editModal = document.getElementById("edit-modal");
-        const openEditModalButtons = document.querySelectorAll(".edit-btn");
-        const editCloseModalButton = document.getElementById("edit-close");
+{{--    <script>--}}
+{{--        /**--}}
+{{--         * @type {HTMLDivElement}--}}
+{{--         */--}}
+{{--        const editModal = document.getElementById("edit-modal");--}}
+{{--        const openEditModalButtons = document.querySelectorAll(".edit-btn");--}}
+{{--        const editCloseModalButton = document.getElementById("edit-close");--}}
 
-        openEditModalButtons.forEach(button => {
-            button.addEventListener("click", function() {
-                const row = button.closest('tr');
-                const cells = row.getElementsByTagName("td");
+{{--        openEditModalButtons.forEach(button => {--}}
+{{--            button.addEventListener("click", function() {--}}
+{{--                const row = button.closest('tr');--}}
+{{--                const cells = row.getElementsByTagName("td");--}}
 
-                // let userId = row.id.match(/user-(\d+)/)[1];
-                // console.log(userId);
+{{--                // let userId = row.id.match(/user-(\d+)/)[1];--}}
+{{--                // console.log(userId);--}}
 
-                let login = cells[1].innerText;
-                let group = (cells[4].innerText !== '-') ? cells[4].innerText : '';
+{{--                // let login = cells[1].innerText;--}}
+{{--                // let group = (cells[4].innerText !== '-') ? cells[4].innerText : '';--}}
+{{--                //--}}
+{{--                // let name = cells[2].innerText.split(' ');--}}
+{{--                // let first_name = name[0];--}}
+{{--                // let last_name = name[1];--}}
+{{--                //--}}
+{{--                // document.getElementById("edit-firstName").value = first_name;--}}
+{{--                // document.getElementById("edit-lastName").value = last_name;--}}
+{{--                // document.getElementById("edit-login").value = login;--}}
+{{--                // document.getElementById("edit-group").value = group;--}}
 
-                let name = cells[2].innerText.split(' ');
-                let first_name = name[0];
-                let last_name = name[1];
+{{--                editModal.style.display = "flex";--}}
+{{--            });--}}
+{{--        });--}}
 
-                document.getElementById("edit-firstName").value = first_name;
-                document.getElementById("edit-lastName").value = last_name;
-                document.getElementById("edit-login").value = login;
-                document.getElementById("edit-group").value = group;
-
-                editModal.style.display = "flex";
-            });
-        });
-
-        editCloseModalButton.onclick = function() {
-            editModal.style.display = "none";
-        }
-    </script>
+{{--        editCloseModalButton.onclick = function() {--}}
+{{--            editModal.style.display = "none";--}}
+{{--        }--}}
+{{--    </script>--}}
 @endsection

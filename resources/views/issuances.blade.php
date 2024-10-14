@@ -19,10 +19,7 @@
     <div class="table-container">
         <div class="controls">
             <div class="functions-left">
-                <div class="search-bar">
-                    <input type="text" placeholder="Поиск...">
-                    <i class="fas fa-search"></i>
-                </div>
+                @include('partials.search-bar')
 
                 <div class="sort-container">
                     <label for="sort-select">Сортировать по: </label>

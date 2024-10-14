@@ -19,32 +19,6 @@
 }
 
 
-/* Кнопка закрытия */
-.close {
-    color: #9A9A9A;
-    background-color: #F0F4F4;
-    font-size: 15px;
-    border-radius: 100%;
-
-    width: 5%;
-    aspect-ratio: 1 / 1;
-
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.close:hover {
-    color: black;
-}
-
-
-/* Заголовок */
-.modal-content h2 {
-    font-size: 15px;
-}
-
-
 /* Форма в модальном окне */
 .form-container {
     margin-top: 17px;
@@ -52,36 +26,106 @@
     flex-direction: column;
     gap: 15px;
 }
+.form-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px 30px;
+}
 .form-row {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     width: 100%;
     gap: 30px;
 }
 .form-group {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     gap: 8px;
     width: 47%;
+}
+.button-row {
+    margin-top: 5px;
+    justify-content: right;
+    gap: 15px;
+}
+
+
+/* Элементы модального окна */
+.modal-content h2 {
+    font-size: 15px;
 }
 .form-container label {
     font-weight: bold;
     font-size: 12px;
 }
-.button-row {
-    margin-top: 5px;
-    justify-content: center;
+.form-container input {
+    padding: 10px 13px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+.form-container select {
+    padding: 10px 13px;
+    border-radius: 5px;
+    font-size: 12px;
 }
 
 
-/* Кнопка сохранения */
+/* Кнопки */
+.round-button {
+    font-size: 15px;
+    border-radius: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Кнопка закрытия */
+.close {
+    background-color: #F0F4F4;
+    color: #9A9A9A;
+    width: 5%;
+}
+.close:hover {
+    background-color: #D9E6E6;
+    color: #7A7A7A;
+}
+.close:active {
+    background-color: #BCCECE;
+    color: #5A5A5A;
+}
+
+
+/*.plus {*/
+/*    color: white;*/
+/*    background-color: #066A69;*/
+/*    font-size: 15px;*/
+/*    border-radius: 100%;*/
+
+/*    width: 5%;*/
+/*    aspect-ratio: 1 / 1;*/
+
+/*    cursor: pointer;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+/*.plus:hover {*/
+/*    background-color: #045a59;*/
+/*}*/
+/*.plus:active {*/
+/*    background-color: #034544;*/
+/*}*/
+
+
+/* Кнопки сохранения/удаления */
+.button-row button {
+    padding: 10px 25px;
+    border-radius: 10px;
+}
 .safe-button {
     background-color: #FFCB44;
-    width: 47%;
-    padding: 13px;
-    border-radius: 10px;
 }
 .safe-button:hover {
     background-color: #ffb800;
@@ -89,116 +133,93 @@
 .safe-button:active {
     background-color: #c88e00;
 }
-
-
-/* Поля ввода*/
-.modal-content input {
-    padding: 10px 13px;
-    border-radius: 5px;
-    font-size: 12px;
-}
-.modal-content select {
-    padding: 10px 13px;
-    border-radius: 5px;
-    font-size: 12px;
-}
-
-
-/* Плюс */
-.plus {
-    color: white;
-    background-color: #066A69;
-    font-size: 15px;
-    border-radius: 100%;
-
-    width: 5%;
-    aspect-ratio: 1 / 1;
-
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.plus:hover {
-    background-color: #045a59;
-}
-.plus:active {
-    background-color: #034544;
-}
-
-
-/* Поле для авторов */
-.authors-row {
-    display: flex;
-    gap: 8px;
-    flex-direction: column;
-    width: 100%;
-}
-.authors-input {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    gap: 12px;
-}
-.authors-input input {
-    width: 41%;
-}
-.author-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-.author-name {
+.delete-button {
     background-color: #D9D9D9;
-    border-radius: 5px;
-    padding: 5px 10px;
-    text-align: center;
-    font-size: 10px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+}
+.delete-button {
+    background-color: #D9D9D9;
+}
+.delete-button:hover {
+    background-color: #C0C0C0;
+}
+.delete-button:active {
+    background-color: #A8A8A8;
 }
 
 
-/* Поле ввода количества */
-.amount-wrapper {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc;
-    justify-content: space-between;
-    width: 100%;
-    border-radius: 5px;
-    font-size: 12px;
-}
-.amount-btn {
-    color: white;
-    background-color: #066A69;
-    font-size: 15px;
-    border-radius: 100%;
 
-    width: 9%;
-    aspect-ratio: 1 / 1;
-    margin: 6px 10px;
+/*!* Поле для авторов *!*/
+/*.authors-row {*/
+/*    display: flex;*/
+/*    gap: 8px;*/
+/*    flex-direction: column;*/
+/*    width: 100%;*/
+/*}*/
+/*.authors-input {*/
+/*    display: flex;*/
+/*    justify-content: left;*/
+/*    align-items: center;*/
+/*    gap: 12px;*/
+/*}*/
+/*.authors-input input {*/
+/*    width: 41%;*/
+/*}*/
+/*.author-list {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    gap: 10px;*/
+/*}*/
+/*.author-name {*/
+/*    background-color: #D9D9D9;*/
+/*    border-radius: 5px;*/
+/*    padding: 5px 10px;*/
+/*    text-align: center;*/
+/*    font-size: 10px;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    gap: 5px;*/
+/*}*/
 
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.increase {
-    background-color: #00695c;
-    color: white;
-}
-.amount-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-.amount-wrapper input[type="text"] {
-    width: 40px;
-    text-align: center;
-    border: none;
-    font-size: 12px;
-    background-color: transparent;
-    padding: 0;
-    margin: 10px 0;
-}
+
+/*!* Поле ввода количества *!*/
+/*.amount-wrapper {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    border: 1px solid #ccc;*/
+/*    justify-content: space-between;*/
+/*    width: 100%;*/
+/*    border-radius: 5px;*/
+/*    font-size: 12px;*/
+/*}*/
+/*.amount-btn {*/
+/*    color: white;*/
+/*    background-color: #066A69;*/
+/*    font-size: 15px;*/
+/*    border-radius: 100%;*/
+
+/*    width: 9%;*/
+/*    aspect-ratio: 1 / 1;*/
+/*    margin: 6px 10px;*/
+
+/*    cursor: pointer;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+/*.increase {*/
+/*    background-color: #00695c;*/
+/*    color: white;*/
+/*}*/
+/*.amount-btn:disabled {*/
+/*    opacity: 0.5;*/
+/*    cursor: not-allowed;*/
+/*}*/
+/*.amount-wrapper input[type="text"] {*/
+/*    width: 40px;*/
+/*    text-align: center;*/
+/*    border: none;*/
+/*    font-size: 12px;*/
+/*    background-color: transparent;*/
+/*    padding: 0;*/
+/*    margin: 10px 0;*/
+/*}*/
