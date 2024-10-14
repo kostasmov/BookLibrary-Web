@@ -19,10 +19,10 @@
             <form method="post" id="authForm">
                 @csrf
 
-                <label for="login">Логин:</label>
+                <label for="login">Логин</label>
                 <input type="text" id="login" name="login">
 
-                <label for="password">Пароль:</label>
+                <label for="password">Пароль</label>
                 <input type="password" id="password" name="password">
 
                 @if ($errors->any())
