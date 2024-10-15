@@ -146,6 +146,9 @@
     color: black;
     cursor: default;
 }
+.author-name .remove {
+    cursor: pointer;
+}
 
 
 /* Поле ввода количества */

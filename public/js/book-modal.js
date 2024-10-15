@@ -54,7 +54,7 @@ openCreateModalButton.onclick = function () {
     yearInput.value = '2024';
     typeInput.value = 'fiction';
     amountInput.value = '1';
-    // authorList.innerHTML = '';
+    authorList.innerHTML = '';
 }
 
 
@@ -89,31 +89,16 @@ openEditModalButtons.forEach(button => {
 
                 authorList.innerHTML = '';
                 book.authors.forEach(author => {
-                    const authorDiv = document.createElement('div');
-                    authorDiv.classList.add('author-name');
+                    const authorName = document.createElement('div');
+                    authorName.classList.add('author-name')
 
-                    const firstNameSpan = document.createElement('span');
-                    firstNameSpan.classList.add('first-name');
-                    firstNameSpan.textContent = author.first_name;
+                    authorName.innerHTML = `
+                        <span class="author-first-name">${ author.first_name }</span>
+                        <span class="author-last-name">${ author.last_name }</span>
+                        <span class="remove" onclick="removeAuthor(this)">✖</span>
+                    `;
 
-                    const lastNameSpan = document.createElement('span');
-                    lastNameSpan.classList.add('last-name');
-                    lastNameSpan.textContent = author.last_name;
-
-                    const removeSpan = document.createElement('span');
-                    removeSpan.classList.add('remove-author');
-                    removeSpan.textContent = '✖';
-                    removeSpan.style.cursor = 'pointer';
-
-                    removeSpan.onclick = function() {
-                        authorDiv.remove();
-                    };
-
-                    authorDiv.appendChild(firstNameSpan);
-                    authorDiv.appendChild(lastNameSpan);
-                    authorDiv.appendChild(removeSpan);
-
-                    authorList.appendChild(authorDiv);
+                    authorList.appendChild(authorName);
                 });
 
                 bookModal.style.display = "flex";
@@ -136,4 +121,9 @@ closeModalButton.onclick = function () {
 
 //  ФУНКЦИИ
 
-
+// Удаление автора
+function removeAuthor(element) {
+    // Находим родительский элемент .author-name и удаляем его
+    const authorName = element.closest('.author-name');
+    authorName.remove();
+}
