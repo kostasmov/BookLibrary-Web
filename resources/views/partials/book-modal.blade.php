@@ -21,7 +21,9 @@
                     </div>
                     <div id="author-list" class="author-list">
 {{--                        <div class="author-name">--}}
-{{--                            Томас Кормен <span class="remove">✖</span>--}}
+{{--                            <span class="author-first-name">Томас</span>--}}
+{{--                            <span class="author-last-name">Кормен</span>--}}
+{{--                            <span onclick="removeAuthor(this)">✖</span>--}}
 {{--                        </div>--}}
                     </div>
                 </div>

@@ -54,7 +54,7 @@ openCreateModalButton.onclick = function () {
     yearInput.value = '2024';
     typeInput.value = 'fiction';
     amountInput.value = '1';
-    authorList.innerHTML = '';
+    // authorList.innerHTML = '';
 }
 
 
@@ -92,8 +92,26 @@ openEditModalButtons.forEach(button => {
                     const authorDiv = document.createElement('div');
                     authorDiv.classList.add('author-name');
 
-                    const fullName = `${author.first_name} ${author.last_name}`;
-                    authorDiv.innerHTML = `${fullName} <span class="remove-author">✖</span>`;
+                    const firstNameSpan = document.createElement('span');
+                    firstNameSpan.classList.add('first-name');
+                    firstNameSpan.textContent = author.first_name;
+
+                    const lastNameSpan = document.createElement('span');
+                    lastNameSpan.classList.add('last-name');
+                    lastNameSpan.textContent = author.last_name;
+
+                    const removeSpan = document.createElement('span');
+                    removeSpan.classList.add('remove-author');
+                    removeSpan.textContent = '✖';
+                    removeSpan.style.cursor = 'pointer';
+
+                    removeSpan.onclick = function() {
+                        authorDiv.remove();
+                    };
+
+                    authorDiv.appendChild(firstNameSpan);
+                    authorDiv.appendChild(lastNameSpan);
+                    authorDiv.appendChild(removeSpan);
 
                     authorList.appendChild(authorDiv);
                 });
@@ -114,3 +132,8 @@ openEditModalButtons.forEach(button => {
 closeModalButton.onclick = function () {
     bookModal.style.display = "none";
 }
+
+
+//  ФУНКЦИИ
+
+

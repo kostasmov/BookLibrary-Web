@@ -6,7 +6,6 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\IssuanceController;
-use App\Http\Controllers\TableController;
 use App\Http\Controllers\UsersController;
 
 use App\Http\Middleware\AdminMiddleware;
