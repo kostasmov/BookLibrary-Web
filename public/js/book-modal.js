@@ -26,11 +26,12 @@ const openEditModalButtons = document.querySelectorAll(".edit-btn");
 const deleteButton = document.getElementById('delete-button');
 const saveButton = document.getElementById('save-button');
 
-titleInput = document.getElementById('title');
-publisherInput = document.getElementById('publisher');
-yearInput = document.getElementById('year');
-typeInput = document.getElementById('type');
-amountInput = document.getElementById('amount');
+const titleInput = document.getElementById('title');
+const publisherInput = document.getElementById('publisher');
+const yearInput = document.getElementById('year');
+const typeInput = document.getElementById('type');
+const amountInput = document.getElementById('amount');
+const authorList = document.getElementById('author-list');
 
 /** @type {Book} */
 let book;
@@ -47,6 +48,7 @@ openCreateModalButton.onclick = function () {
     yearInput.value = '2024';
     typeInput.value = 'fiction';
     amountInput.value = '1';
+    authorList.innerHTML = '';
 }
 
 
@@ -78,6 +80,17 @@ openEditModalButtons.forEach(button => {
                 yearInput.value = book.book_year;
                 typeInput.value = book.type;
                 amountInput.value = book.amount;
+
+                authorList.innerHTML = '';
+                book.authors.forEach(author => {
+                    const authorDiv = document.createElement('div');
+                    authorDiv.classList.add('author-name');
+
+                    const fullName = `${author.first_name} ${author.last_name}`;
+                    authorDiv.innerHTML = `${fullName} <span class="remove-author">✖</span>`;
+
+                    authorList.appendChild(authorDiv);
+                });
 
                 bookModal.style.display = "flex";
                 modalName.textContent = 'Редактирование книги';

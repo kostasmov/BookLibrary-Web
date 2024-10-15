@@ -19,13 +19,10 @@
                         <input type="text" placeholder="Фамилия">
                         <button type="button" id="add-author-button" class="round-button green"><i class="fa-solid fa-plus"></i></button>
                     </div>
-                    <div class="author-list">
-                        <div class="author-name">
-                            Томас Кормен <span class="remove">✖</span>
-                        </div>
-                        <div class="author-name">
-                            Имя Автора 2 <span class="remove">✖</span>
-                        </div>
+                    <div id="author-list" class="author-list">
+{{--                        <div class="author-name">--}}
+{{--                            Томас Кормен <span class="remove">✖</span>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
 
