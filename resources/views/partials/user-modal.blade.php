@@ -1,8 +1,8 @@
 <div id="modal" class="modal">
     <div class="modal-content">
         <div class="form-row">
-            <h2>@{{ modalTitle }}</h2>
-            <span id="close" class="close"><i class="fa-solid fa-xmark"></i></span>
+            <h2 id="modal-name"></h2>
+            <span id="close" class="round-button close"><i class="fa-solid fa-xmark"></i></span>
         </div>
 
         <form class="form-container">
@@ -22,12 +22,10 @@
                     <input type="text" id="login" name="login">
                 </div>
 
-                @if(isset($passwordField))
-                    <div class="form-group">
-                        <label for="password">Пароль</label>
-                        <input type="text" id="password" name="password">
-                    </div>
-                @endif
+                <div class="form-group" id="password-group">
+                    <label for="password">Пароль</label>
+                    <input type="text" id="password" name="password">
+                </div>
 
                 <div class="form-group">
                     <label for="group">Группа</label>
@@ -36,8 +34,8 @@
             </div>
 
             <div class="form-row button-row">
-                <button class="delete-button" type="button">Удалить</button>
-                <button class="safe-button" type="button">Сохранить</button>
+                <button id="delete-button" type="button">Удалить</button>
+                <button id="save-button" type="button">Сохранить</button>
             </div>
         </form>
     </div>

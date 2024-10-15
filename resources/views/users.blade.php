@@ -3,29 +3,29 @@
 @section('title', 'Профиль')
 
 @section('head-scripts')
-    <link rel="stylesheet" href={{ asset('css/table.css') }}>
-    <link rel="stylesheet" href={{ asset('css/modal.css') }}>
+    <link rel='stylesheet' href={{ asset('css/table.css') }}>
+    <link rel='stylesheet' href={{ asset('css/modal.css') }}>
 @endsection
 
 @section('content')
-    <div class="table-container">
-        <div class="controls">
+    <div class='table-container'>
+        <div class='controls'>
 
-            <div class="functions-left">
+            <div class='functions-left'>
                 @include('partials.search-bar')
 
-                <div class="sort-container">
-                    <label for="sort-select">Сортировать по: </label>
-                    <select id="sort-select">
-                        <option value="return-date">Имя</option>
-                        <option value="return-date">Группа</option>
-                        <option value="return-date">Логин</option>
+                <div class='sort-container'>
+                    <label for='sort-select'>Сортировать по: </label>
+                    <select id='sort-select'>
+                        <option value='name'>Имя</option>
+                        <option value='group'>Группа</option>
+                        <option value='login'>Логин</option>
                     </select>
                 </div>
             </div>
 
-            <div class="functions-right">
-                <button id="userRegisterBtn">
+            <div class='functions-right'>
+                <button id='userRegisterBtn'>
                     <i class="fa-sharp fa-solid fa-plus"></i>
                     <span>Добавить</span>
                 </button>
@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <table id="info-table">
+        <table id='info-table'>
             <thead>
             <tr>
                 <th></th>
@@ -47,7 +47,7 @@
             </thead>
             <tbody>
             @foreach ($users as $user)
-                <tr id="user-{{ $user->id }}">
+                <tr id='user-{{ $user->id }}'>
                     <td><i class="edit-btn fa-solid fa-pen-to-square"></i></td>
                     <td>{{ $user->login }}</td>
                     <td>{{ $user->reader->first_name }} {{ $user->reader->last_name }}</td>
@@ -64,62 +64,80 @@
 {{--    @include('partials.user-register-modal')--}}
 {{--    @include('partials.user-edit-modal')--}}
 
+    @include('partials.user-modal')
+
 @endsection
 
 @section('foot-scripts')
     <script src="{{ asset('js/table.js') }}"></script>
 
-{{--    <script>--}}
-{{--        /**--}}
-{{--         * @type {HTMLDivElement}--}}
-{{--         */--}}
-{{--        const registerModal = document.getElementById("register-modal");--}}
-{{--        const openUserModalButton = document.getElementById("userRegisterBtn");--}}
-{{--        const registerCloseModalButton = document.getElementById("register-close");--}}
+    <script>
+        /**
+         * @type {HTMLDivElement}
+         */
+        const modal = document.getElementById('modal');
+        const closeModalButton = document.getElementById('close');
 
-{{--        openUserModalButton.onclick = function() {--}}
-{{--            registerModal.style.display = 'flex';--}}
-{{--        }--}}
+        /**
+         * @type {HTMLDivElement}
+         */
+        const passwordGroup = document.getElementById('password-group');
+        const modalName = document.getElementById('modal-name');
 
-{{--        registerCloseModalButton.onclick = function() {--}}
-{{--            registerModal.style.display = "none";--}}
-{{--        }--}}
-{{--    </script>--}}
+        /**
+         * @type {HTMLButtonElement}
+         */
+        const deleteButton = document.getElementById('delete-button');
+        const saveButton = document.getElementById('save-button');
 
-{{--    <script>--}}
-{{--        /**--}}
-{{--         * @type {HTMLDivElement}--}}
-{{--         */--}}
-{{--        const editModal = document.getElementById("edit-modal");--}}
-{{--        const openEditModalButtons = document.querySelectorAll(".edit-btn");--}}
-{{--        const editCloseModalButton = document.getElementById("edit-close");--}}
+        const openRegisterModalButton = document.getElementById('userRegisterBtn');
+        const openEditModalButtons = document.querySelectorAll('.edit-btn');
 
-{{--        openEditModalButtons.forEach(button => {--}}
-{{--            button.addEventListener("click", function() {--}}
-{{--                const row = button.closest('tr');--}}
-{{--                const cells = row.getElementsByTagName("td");--}}
+        // Открыть окно регистрации читателя
+        openRegisterModalButton.onclick = function() {
+            modal.style.display = 'flex';
 
-{{--                // let userId = row.id.match(/user-(\d+)/)[1];--}}
-{{--                // console.log(userId);--}}
+            modalName.textContent = 'Регистрация читателя';
+            deleteButton.style.display = 'none';
+            passwordGroup.style.display = 'flex'
+        }
 
-{{--                // let login = cells[1].innerText;--}}
-{{--                // let group = (cells[4].innerText !== '-') ? cells[4].innerText : '';--}}
-{{--                //--}}
-{{--                // let name = cells[2].innerText.split(' ');--}}
-{{--                // let first_name = name[0];--}}
-{{--                // let last_name = name[1];--}}
-{{--                //--}}
-{{--                // document.getElementById("edit-firstName").value = first_name;--}}
-{{--                // document.getElementById("edit-lastName").value = last_name;--}}
-{{--                // document.getElementById("edit-login").value = login;--}}
-{{--                // document.getElementById("edit-group").value = group;--}}
+        // Открыть окно редактирования пользователя
+        openEditModalButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const row = button.closest('tr');
+                const cells = row.getElementsByTagName('td');
 
-{{--                editModal.style.display = "flex";--}}
-{{--            });--}}
-{{--        });--}}
+                let userId = row.id.match(/user-(\d+)/)[1];
+                console.log(userId);
 
-{{--        editCloseModalButton.onclick = function() {--}}
-{{--            editModal.style.display = "none";--}}
-{{--        }--}}
-{{--    </script>--}}
+                let login = cells[1].innerText;
+                let group = (cells[4].innerText !== '-') ? cells[4].innerText : '';
+
+                let full_name = cells[2].innerText.split(' ');
+                let first_name = full_name[0];
+                let last_name = full_name[1];
+
+                document.getElementById('firstName').value = first_name;
+                document.getElementById('lastName').value = last_name;
+                document.getElementById('login').value = login;
+                document.getElementById('group').value = group;
+
+                modal.style.display = 'flex';
+
+                modalName.textContent = 'Редактирование пользователя';
+                deleteButton.style.display = 'block';
+                passwordGroup.style.display = 'none'
+            });
+        });
+
+        closeModalButton.onclick = function() {
+            modal.style.display = 'none';
+
+            document.getElementById('firstName').value = '';
+            document.getElementById('lastName').value = '';
+            document.getElementById('login').value = '';
+            document.getElementById('group').value = '';
+        }
+    </script>
 @endsection
