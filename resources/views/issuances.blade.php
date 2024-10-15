@@ -32,7 +32,7 @@
             </div>
 
             <div class="functions-right">
-                {{ $issuances->links('vendor.pagination.custom2') }}
+                {{ $issuances->links('vendor.pagination.custom-table') }}
             </div>
         </div>
 

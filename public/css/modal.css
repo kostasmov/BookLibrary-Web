@@ -44,6 +44,8 @@
     width: 47%;
 }
 .button-row {
+    display: flex;
+    width: 100%;
     margin-top: 5px;
     justify-content: right;
     gap: 15px;
@@ -67,12 +69,17 @@
     padding: 10px 13px;
     border-radius: 5px;
     font-size: 12px;
+    max-height: 50px;
+    overflow-y: auto;
+}
+.button-row button {
+    padding: 10px 25px;
+    border-radius: 10px;
 }
 
 
-/* Кнопки */
+/* Круглые кнопки */
 .round-button {
-    font-size: 15px;
     border-radius: 100%;
     aspect-ratio: 1 / 1;
     display: flex;
@@ -80,9 +87,8 @@
     align-items: center;
 }
 
-
-/* Кнопка закрытия */
 .close {
+    font-size: 15px;
     background-color: #F0F4F4;
     color: #9A9A9A;
     width: 5%;
@@ -95,128 +101,76 @@
     background-color: #BCCECE;
     color: #5A5A5A;
 }
-
-
-/*.plus {*/
-/*    color: white;*/
-/*    background-color: #066A69;*/
-/*    font-size: 15px;*/
-/*    border-radius: 100%;*/
-
-/*    width: 5%;*/
-/*    aspect-ratio: 1 / 1;*/
-
-/*    cursor: pointer;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*}*/
-/*.plus:hover {*/
-/*    background-color: #045a59;*/
-/*}*/
-/*.plus:active {*/
-/*    background-color: #034544;*/
-/*}*/
-
-
-/* Кнопки сохранения/удаления */
-.button-row button {
-    padding: 10px 25px;
-    border-radius: 10px;
+#add-author-button {
+    font-size: 13px;
+    width: 4%;
 }
-#save-button {
-    background-color: #FFCB44;
+#increase {
+
 }
-#save-button:hover {
-    background-color: #ffb800;
+#decrease {
+
 }
-#save-button:active {
-    background-color: #c88e00;
+
+
+/* Поле для авторов */
+.authors-row {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+    width: 100%;
 }
-#delete-button {
+.authors-input {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 12px;
+}
+.author-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.author-name {
     background-color: #D9D9D9;
+    color: #454545;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
-#delete-button:hover {
-    background-color: #C0C0C0;
-}
-#delete-button:active {
-    background-color: #A8A8A8;
+.author-name:hover {
+    color: black;
+    cursor: default;
 }
 
 
+/* Поле ввода количества */
+.amount-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 0 10px;
+}
+.amount-wrapper input {
+    text-align: center;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 10px 0;
+}
+.amount-wrapper button {
+    font-size: 13px;
+    width: 9%;
+}
+.amount-btn:disabled {
+    cursor: not-allowed;
+}
 
-/*!* Поле для авторов *!*/
-/*.authors-row {*/
-/*    display: flex;*/
-/*    gap: 8px;*/
-/*    flex-direction: column;*/
-/*    width: 100%;*/
-/*}*/
-/*.authors-input {*/
-/*    display: flex;*/
-/*    justify-content: left;*/
-/*    align-items: center;*/
-/*    gap: 12px;*/
-/*}*/
-/*.authors-input input {*/
-/*    width: 41%;*/
-/*}*/
-/*.author-list {*/
-/*    display: flex;*/
-/*    flex-wrap: wrap;*/
-/*    gap: 10px;*/
-/*}*/
-/*.author-name {*/
-/*    background-color: #D9D9D9;*/
-/*    border-radius: 5px;*/
-/*    padding: 5px 10px;*/
-/*    text-align: center;*/
-/*    font-size: 10px;*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    gap: 5px;*/
-/*}*/
-
-
-/*!* Поле ввода количества *!*/
-/*.amount-wrapper {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    border: 1px solid #ccc;*/
-/*    justify-content: space-between;*/
-/*    width: 100%;*/
-/*    border-radius: 5px;*/
-/*    font-size: 12px;*/
-/*}*/
-/*.amount-btn {*/
-/*    color: white;*/
-/*    background-color: #066A69;*/
-/*    font-size: 15px;*/
-/*    border-radius: 100%;*/
-
-/*    width: 9%;*/
-/*    aspect-ratio: 1 / 1;*/
-/*    margin: 6px 10px;*/
-
-/*    cursor: pointer;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*}*/
-/*.increase {*/
-/*    background-color: #00695c;*/
-/*    color: white;*/
-/*}*/
-/*.amount-btn:disabled {*/
-/*    opacity: 0.5;*/
-/*    cursor: not-allowed;*/
-/*}*/
-/*.amount-wrapper input[type="text"] {*/
-/*    width: 40px;*/
-/*    text-align: center;*/
-/*    border: none;*/
-/*    font-size: 12px;*/
-/*    background-color: transparent;*/
-/*    padding: 0;*/
-/*    margin: 10px 0;*/
-/*}*/

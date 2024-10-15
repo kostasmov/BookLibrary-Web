@@ -22,7 +22,7 @@
         <div class="actions {{ $book->status }}">
             <form action="{{ route('library.request', $book->id) }}" method="POST">
                 @csrf
-                <button type="submit">{{ $book_statuses[$book->status] }}</button>
+                <button class="{{ $book->status == 'available' ? 'yellow' : '' }}" type="submit">{{ $book_statuses[$book->status] }}</button>
             </form>
         </div>
 

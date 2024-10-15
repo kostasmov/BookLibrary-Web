@@ -29,7 +29,7 @@
                     <span class="error">{{ $errors->first() }}</span>
                 @endif
 
-                <button type="submit">Войти</button>
+                <button class="green" type="submit">Войти</button>
             </form>
         </div>
     </body>

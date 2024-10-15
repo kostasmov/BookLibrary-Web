@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="form-row">
             <h2 id="modal-name"></h2>
-            <span id="close" class="round-button close"><i class="fa-solid fa-xmark"></i></span>
+            <button type="button" id="close" class="round-button close"><i class="fa-solid fa-xmark"></i></button>
         </div>
 
         <form class="form-container">
@@ -27,15 +27,15 @@
                     <input type="text" id="password" name="password">
                 </div>
 
-                <div class="form-group">
-                    <label for="group">Группа</label>
-                    <input type="text" id="group" name="group">
+                    <div class="form-group">
+                        <label for="group">Группа</label>
+                        <input type="text" id="group" name="group">
                 </div>
             </div>
 
-            <div class="form-row button-row">
-                <button id="delete-button" type="button">Удалить</button>
-                <button id="save-button" type="button">Сохранить</button>
+            <div class="button-row">
+                <button id="delete-button" class="grey" type="button">Удалить</button>
+                <button id="save-button" class="yellow" type="button">Сохранить</button>
             </div>
         </form>
     </div>

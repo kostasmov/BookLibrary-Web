@@ -6,6 +6,7 @@
     font-size: 12px;
     border: 1px solid #ccc;
     padding-bottom: 10px;
+    overflow: hidden;
 }
 .controls {
     padding: 20px 23px;
@@ -24,22 +25,9 @@
     align-content: center;
     border-radius: 5px;
     font-size: 10px;
-    /*background-color: #066A69;*/
-    background-color: #FFCB44;
-    /*color: white;*/
-    color: black;
 }
 .controls button span {
     margin-left: 5px;
-}
-.controls button:hover {
-    /*background-color: #045a59;*/
-    background-color: #ffb800;
-    font-weight: bold;
-}
-.controls button:active {
-    /*background-color: #034544;*/
-    background-color: #c88e00;
 }
 
 

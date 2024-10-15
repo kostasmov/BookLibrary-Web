@@ -1,15 +1,15 @@
-<div id="edit-modal" class="modal">
+<div id="modal" class="modal">
     <div class="modal-content">
         <div class="form-row">
-            <h2>Редактирование книги</h2>
-            <button id="edit-close" class="round-button close" type="button"><i class="fa-solid fa-xmark"></i></button>
+            <h2 id="modal-name"></h2>
+            <button id="close" class="round-button close" type="button"><i class="fa-solid fa-xmark"></i></button>
         </div>
 
         <form class="form-container">
             <div class="form-inputs">
                 <div class="form-group" style="width: 100%">
                     <label for="title">Название</label>
-                    <input type="text" id="title" name="title" placeholder="Название">
+                    <input type="text" id="title" name="title">
                 </div>
 
                 <div class="authors-row">
@@ -31,7 +31,7 @@
 
                 <div class="form-group">
                     <label for="publisher">Издатель</label>
-                    <input type="text" id="publisher" name="publisher" placeholder="Издатель">
+                    <input type="text" id="publisher" name="publisher">
                 </div>
 
                 <div class="form-group">
@@ -55,7 +55,7 @@
                     <label for="amount">Количество</label>
                     <div class="amount-wrapper">
                         <button type="button" class="round-button grey" id="decrease"><i class="fa-solid fa-minus"></i></button>
-                        <input type="text" id="amount" value="4" readonly>
+                        <input type="text" id="amount" value="1" readonly>
                         <button type="button" class="round-button green" id="increase"><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>

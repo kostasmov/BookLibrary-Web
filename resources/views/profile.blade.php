@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="button-row">
-                <button type="submit">Сохранить</button>
+                <button class="yellow" type="submit">Сохранить</button>
             </div>
         </form>
     </div>
@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="button-row">
-                <button type="submit">Изменить пароль</button>
+                <button class="yellow" type="submit">Изменить пароль</button>
             </div>
         </form>
     </div>
