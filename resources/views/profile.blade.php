@@ -1,9 +1,14 @@
+@php use App\Models\User; @endphp
 @extends('layouts.app')
 
 @section('title', 'Профиль')
 
 @php
     $user = auth()->user();
+    if (!$user instanceof User) {
+        throw new Exception("Ошибка пользователя");
+    }
+
     $group = $user->reader->group_code;
 @endphp
 
@@ -59,10 +64,10 @@
     </div>
 
     @if (session('update-success'))
-        <script>alert( '{{ session('update-success') }}' );</script>
+        <script>alert('{{ session('update-success') }}');</script>
     @endif
 
     @if ($errors->any())
-        <script>alert( '{{ $errors->first() }}' );</script>
+        <script>alert('{{ $errors->first() }}');</script>
     @endif
 @endsection

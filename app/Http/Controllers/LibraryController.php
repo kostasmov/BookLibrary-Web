@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Issuance;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -15,17 +15,22 @@ class LibraryController extends Controller
     {
         $books = Book::paginate(6);
 
-        foreach ($books as $book) {
-            $book->status = $this->getBookStatus($book);
-        }
+            foreach ($books as $book) {
+                $book->status = $this->getBookStatus($book);
+            }
 
         return view('library', compact('books'));
     }
 
     private function getBookStatus(Book $book): String
     {
+        $user = Auth::user();
+        if (!$user instanceof User) {
+            return '';
+        }
+
         $userIssuances = Issuance::where('book_id', $book->id)
-            ->where('reader_id', Auth::user()->reader->id)
+            ->where('reader_id', $user->reader->id)
             ->where('status', '!=', 'returned')
             ->get();
 
@@ -48,10 +53,14 @@ class LibraryController extends Controller
         return 'available';
     }
 
-    public function makeRequest(Request $request, $bookId):  RedirectResponse
+    public function makeRequest($bookId):  RedirectResponse
     {
         $book = Book::findOrFail($bookId);
         $user = Auth::user();
+
+        if (!$user instanceof User) {
+            return redirect()->back()->with('error', 'Нет аккаунта');
+        }
 
         $hasIssuedBooks = Issuance::where('reader_id', $user->reader->id)
             ->where('status', 'issued')

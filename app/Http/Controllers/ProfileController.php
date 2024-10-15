@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,9 @@ class ProfileController extends Controller
     public function update(Request $request): RedirectResponse
     {
         $user = Auth::user();
+        if (!$user instanceof User) {
+            return redirect()->back()->with('error', 'Нет аккаунта');
+        }
 
         $validatedData = $request->validate([
             'login' => [
@@ -51,16 +55,22 @@ class ProfileController extends Controller
 
     public function updatePassword(Request $request): RedirectResponse
     {
+        $user = Auth::user();
+        if (!$user instanceof User) {
+            return redirect()->back()->with('error', 'Нет аккаунта');
+        }
+
         $validatedData = $request->validate([
             'old-pass' => ['required', function ($attribute, $value, $fail) {
-                if (!Hash::check($value, Auth::user()->password)) {
+                global $user;
+                if (!Hash::check($value, $user->password)) {
                     $fail('Неверно указан старый пароль');
                 }
             }],
             'new-pass' => 'required|string|min:4|max:20',
         ]);
 
-        Auth::user()->update([
+        $user->update([
             'password' => Hash::make($validatedData['new-pass']),
         ]);
 

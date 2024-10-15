@@ -14,6 +14,7 @@ use Illuminate\Notifications\Notifiable;
  * @property mixed $email
  * @property mixed $password
  * @property mixed $role
+ * @property integer $id
  * @method static where(string $string, $id)
  * @method static paginate(int $int)
  */

@@ -1,4 +1,10 @@
 /**
+ * @typedef {Object} Author
+ * @property {string} first_name
+ * @property {string} last_name
+ */
+
+/**
  * @typedef {Object} Book
  * @property {string} title
  * @property {string} publisher
@@ -6,7 +12,7 @@
  * @property {string} type
  * @property {number} amount
  * @property {number} issuances
- * @property {array} authors
+ * @property {Author[]} authors
  */
 
 /**
