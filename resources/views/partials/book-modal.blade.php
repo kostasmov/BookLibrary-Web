@@ -36,7 +36,7 @@
 
                 <div class="form-group">
                     <label for="type">Тип</label>
-                    <select name="type" class="type-select">
+                    <select id="type" name="type" class="type-select">
                         <option value="fiction">Худ. литература</option>
                         <option value="technic">Техн. литература</option>
                     </select>

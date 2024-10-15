@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 /**
  * @method static paginate(int $int)
  * @method static findOrFail(mixed $id)
+ * @method static find(mixed $bookId)
  */
 class Book extends Model
 {

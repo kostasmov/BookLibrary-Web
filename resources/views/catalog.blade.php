@@ -48,7 +48,7 @@
             </thead>
             <tbody>
             @foreach ($books as $book)
-                <tr id="book-{{ $book->id }}">
+                <tr data-id="{{ $book->id }}">
                     <td><i class="edit-btn fa-solid fa-pen-to-square"></i></td>
                     <td>{{ $book->title }}</td>
 

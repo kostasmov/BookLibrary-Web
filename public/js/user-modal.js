@@ -20,6 +20,11 @@ const modalName = document.getElementById('modal-name');
 const deleteButton = document.getElementById('delete-button');
 const saveButton = document.getElementById('save-button');
 
+firstNameInput = document.getElementById('firstName');
+lastNameInput = document.getElementById('lastName');
+loginInput = document.getElementById('login');
+groupInput = document.getElementById('group');
+
 
 // Открыть окно регистрации читателя
 openRegisterModalButton.onclick = function() {
@@ -37,8 +42,8 @@ openEditModalButtons.forEach(button => {
         const row = button.closest('tr');
         const cells = row.getElementsByTagName('td');
 
-        let userId = row.id.match(/user-(\d+)/)[1];
-        console.log(userId);
+        // let userId = row.id.match(/user-(\d+)/)[1];
+        // console.log(userId);
 
         let login = cells[1].innerText;
         let group = (cells[4].innerText !== '-') ? cells[4].innerText : '';
@@ -47,10 +52,10 @@ openEditModalButtons.forEach(button => {
         let first_name = full_name[0];
         let last_name = full_name[1];
 
-        document.getElementById('firstName').value = first_name;
-        document.getElementById('lastName').value = last_name;
-        document.getElementById('login').value = login;
-        document.getElementById('group').value = group;
+        firstNameInput.value = first_name;
+        lastNameInput.value = last_name;
+        loginInput.value = login;
+        groupInput.value = group;
 
         userModal.style.display = 'flex';
 
@@ -65,8 +70,8 @@ openEditModalButtons.forEach(button => {
 closeModalButton.onclick = function() {
     userModal.style.display = 'none';
 
-    document.getElementById('firstName').value = '';
-    document.getElementById('lastName').value = '';
-    document.getElementById('login').value = '';
-    document.getElementById('group').value = '';
+    firstNameInput.value = '';
+    lastNameInput.value = '';
+    loginInput.value = '';
+    groupInput.value = '';
 }
