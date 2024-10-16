@@ -55,4 +55,14 @@ class CatalogController extends Controller
             ], 404);
         }
     }
+
+    public function createBook(Request $request): JsonResponse
+    {
+        return response()->json(['message' => 'Fetch работает (create)',]);
+    }
+
+    public function editBook(Request $request): JsonResponse
+    {
+        return response()->json(['message' => 'Fetch работает (edit)',]);
+    }
 }

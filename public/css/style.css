@@ -161,12 +161,10 @@ header {
 .logout:hover {
     color: #9A9A9A;
 }
-
-
-/* Содержимое страницы */
 .main-content {
     margin-top: 12px;
 }
+
 
 /* Пагинация */
 .pagination {

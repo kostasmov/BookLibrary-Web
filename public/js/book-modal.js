@@ -62,6 +62,8 @@ openCreateModalButton.onclick = function () {
 
     issuances = 0;
     updateButtons();
+
+    saveButton.addEventListener('click', submitCreate);
 }
 
 
@@ -82,7 +84,7 @@ openEditModalButtons.forEach(button => {
             })
         })
             .then(response => {
-                if (!response.ok) { throw new Error('Не удалось выполнить Fetch-запрос'); }
+                if (!response.ok) { throw new Error('Не удалось выполнить Fetch-запрос (загрузка формы)'); }
                 return response.json();
             })
             .then(data => {
@@ -114,6 +116,8 @@ openEditModalButtons.forEach(button => {
                 bookModal.style.display = "flex";
                 modalName.textContent = 'Редактирование книги';
                 deleteButton.style.display = 'block';
+
+               saveButton.addEventListener('click', submitEdit);
             })
             .catch(error => {
                 alert(error);
@@ -126,6 +130,9 @@ openEditModalButtons.forEach(button => {
 // Закрыть модальное окно
 closeModalButton.onclick = function () {
     bookModal.style.display = "none";
+
+    saveButton.removeEventListener('click', submitCreate);
+    saveButton.removeEventListener('click', submitEdit);
 }
 
 
@@ -160,4 +167,84 @@ function updateButtons() {
     let currentAmount = parseInt(amountInput.value, 10);
 
     decreaseButton.disabled = currentAmount <= issuances;
+}
+
+
+// Сбор данных формы
+function getFormData() {
+    const title = titleInput.value;
+    const publisher = publisherInput.value;
+    const year = yearInput.value;
+    const type = typeInput.value;
+    const amount = amountInput.value;
+
+    const authors = [];
+    authorList.querySelectorAll('.author-name').forEach(function(authorElement) {
+        const firstName = authorElement.querySelector('.author-first-name').textContent;
+        const lastName = authorElement.querySelector('.author-last-name').textContent;
+        authors.push({ first_name: firstName, last_name: lastName });
+    });
+
+    return {
+        title: title,
+        publisher: publisher,
+        year: year,
+        type: type,
+        amount: amount,
+        authors: authors
+    };
+}
+
+
+// Сохранение новой книги
+function submitCreate() {
+    const formData = getFormData();
+
+    fetch('/catalog/submit-create', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Не удалось выполнить Fetch-запрос (отправка формы)');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+
+// Сохранение редактирования книги
+function submitEdit() {
+    const formData = getFormData();
+
+    fetch('/catalog/submit-edit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Не удалось выполнить Fetch-запрос (отправка формы)');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
