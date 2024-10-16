@@ -15,8 +15,8 @@
                 <div class="authors-row">
                     <label>Авторы</label>
                     <div class="authors-input">
-                        <input type="text" placeholder="Имя">
-                        <input type="text" placeholder="Фамилия">
+                        <input id="author-fname" type="text" placeholder="Имя">
+                        <input id="author-lname" type="text" placeholder="Фамилия">
                         <button type="button" id="add-author-button" class="round-button green"><i class="fa-solid fa-plus"></i></button>
                     </div>
                     <div id="author-list" class="author-list">

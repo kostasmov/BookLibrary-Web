@@ -32,6 +32,10 @@ const openEditModalButtons = document.querySelectorAll(".edit-btn");
 const deleteButton = document.getElementById('delete-button');
 const saveButton = document.getElementById('save-button');
 
+const addAuthorButton = document.getElementById('add-author-button');
+const authorFirstName = document.getElementById('author-fname');
+const authorLastName = document.getElementById('author-lname');
+
 const decreaseButton = document.getElementById('amount-decrease');
 const increaseButton = document.getElementById('amount-increase');
 let issuances = 0;
@@ -101,16 +105,7 @@ openEditModalButtons.forEach(button => {
 
                 authorList.innerHTML = '';
                 book.authors.forEach(author => {
-                    const authorName = document.createElement('div');
-                    authorName.classList.add('author-name')
-
-                    authorName.innerHTML = `
-                        <span class="author-first-name">${ author.first_name }</span>
-                        <span class="author-last-name">${ author.last_name }</span>
-                        <span class="remove" onclick="removeAuthor(this)">✖</span>
-                    `;
-
-                    authorList.appendChild(authorName);
+                    addAuthor(author.first_name, author.last_name);
                 });
 
                 bookModal.style.display = "flex";
@@ -136,7 +131,10 @@ closeModalButton.onclick = function () {
 }
 
 
+
 //  ФУНКЦИИ И ДОП. ОБРАБОТЧИКИ
+
+
 
 // Удаление автора
 function removeAuthor(element) {
@@ -247,4 +245,35 @@ function submitEdit() {
         .catch((error) => {
             console.error('Error:', error);
         });
+}
+
+
+// Добавление нового автора
+addAuthorButton.addEventListener('click', function() {
+    const firstName = authorFirstName.value.trim();
+    const lastName = authorLastName.value.trim();
+
+    if (firstName && lastName) {
+        addAuthor(firstName, lastName);
+
+        authorFirstName.value = '';
+        authorLastName.value = '';
+    } else {
+        alert('Пожалуйста, заполните оба поля: Имя и Фамилия');
+    }
+});
+
+
+// Внесение имени автора в список авторов
+function addAuthor(first_name, last_name) {
+    const authorName = document.createElement('div');
+    authorName.classList.add('author-name')
+
+    authorName.innerHTML = `
+        <span class="author-first-name">${first_name}</span>
+        <span class="author-last-name">${last_name}</span>
+        <span class="remove" onclick="removeAuthor(this)">✖</span>
+    `;
+
+    authorList.appendChild(authorName);
 }
