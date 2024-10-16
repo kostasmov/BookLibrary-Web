@@ -53,9 +53,9 @@
                 <div class="form-group">
                     <label for="amount">Количество</label>
                     <div class="amount-wrapper">
-                        <button type="button" class="round-button grey" id="decrease"><i class="fa-solid fa-minus"></i></button>
+                        <button type="button" class="round-button grey" id="amount-decrease"><i class="fa-solid fa-minus"></i></button>
                         <input type="text" id="amount" value="1" readonly>
-                        <button type="button" class="round-button green" id="increase"><i class="fa-solid fa-plus"></i></button>
+                        <button type="button" class="round-button green" id="amount-increase"><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
             </div>

@@ -32,6 +32,10 @@ const openEditModalButtons = document.querySelectorAll(".edit-btn");
 const deleteButton = document.getElementById('delete-button');
 const saveButton = document.getElementById('save-button');
 
+const decreaseButton = document.getElementById('amount-decrease');
+const increaseButton = document.getElementById('amount-increase');
+let issuances = 0;
+
 const titleInput = document.getElementById('title');
 const publisherInput = document.getElementById('publisher');
 const yearInput = document.getElementById('year');
@@ -55,6 +59,9 @@ openCreateModalButton.onclick = function () {
     typeInput.value = 'fiction';
     amountInput.value = '1';
     authorList.innerHTML = '';
+
+    issuances = 0;
+    updateButtons();
 }
 
 
@@ -86,6 +93,9 @@ openEditModalButtons.forEach(button => {
                 yearInput.value = book.book_year;
                 typeInput.value = book.type;
                 amountInput.value = book.amount;
+
+                issuances = book.issuances;
+                updateButtons();
 
                 authorList.innerHTML = '';
                 book.authors.forEach(author => {
@@ -119,11 +129,35 @@ closeModalButton.onclick = function () {
 }
 
 
-//  ФУНКЦИИ
+//  ФУНКЦИИ И ДОП. ОБРАБОТЧИКИ
 
 // Удаление автора
 function removeAuthor(element) {
     // Находим родительский элемент .author-name и удаляем его
     const authorName = element.closest('.author-name');
     authorName.remove();
+}
+
+// Установка количества книг и сверка с числом выдач
+decreaseButton.addEventListener('click', function () {
+    let currentAmount = parseInt(amountInput.value);
+    if (currentAmount > issuances) {
+        amountInput.value = currentAmount - 1;
+    }
+
+    updateButtons();
+});
+
+increaseButton.addEventListener('click', function () {
+    let currentAmount = parseInt(amountInput.value);
+    amountInput.value = currentAmount + 1;
+    decreaseButton.disabled = false;
+
+    updateButtons();
+});
+
+function updateButtons() {
+    let currentAmount = parseInt(amountInput.value, 10);
+
+    decreaseButton.disabled = currentAmount <= issuances;
 }

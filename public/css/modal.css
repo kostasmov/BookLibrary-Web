@@ -105,12 +105,6 @@
     font-size: 13px;
     width: 4%;
 }
-/*#increase {*/
-
-/*}*/
-/*#decrease {*/
-
-/*}*/
 
 
 /* Поле для авторов */
@@ -173,7 +167,5 @@
     font-size: 13px;
     width: 9%;
 }
-.amount-btn:disabled {
-    cursor: not-allowed;
-}
+
 
