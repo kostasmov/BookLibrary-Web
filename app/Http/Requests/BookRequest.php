@@ -16,6 +16,7 @@ class BookRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'bookId' => 'required|integer',
             'title' => 'required|string|max:160',
             'publisher' => 'nullable|string|max:50',
             'year' => 'nullable|integer',

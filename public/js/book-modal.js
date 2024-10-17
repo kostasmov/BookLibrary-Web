@@ -126,6 +126,9 @@ openEditModalButtons.forEach(button => {
 function closeModal() {
     bookModal.style.display = "none";
 
+    authorFirstName.value = '';
+    authorLastName.value = '';
+
     saveButton.removeEventListener('click', submitCreate);
     saveButton.removeEventListener('click', submitEdit);
     deleteButton.removeEventListener('click', deleteBook);
@@ -175,6 +178,7 @@ function getFormData() {
     });
 
     return {
+        bookId: 0,
         title: title,
         publisher: publisher,
         year: year,
@@ -215,6 +219,7 @@ function submitCreate() {
 // Сохранение редактирования книги
 function submitEdit() {
     const formData = getFormData();
+    formData['bookId'] = book.id;
 
     fetch('/catalog/submit-edit', {
         method: 'POST',
