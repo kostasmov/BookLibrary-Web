@@ -109,9 +109,7 @@ openEditModalButtons.forEach(button => {
                 });
 
                 saveButton.addEventListener('click', submitEdit);
-                deleteButton.addEventListener('click', function() {
-                    deleteBook(bookId);
-                });
+                deleteButton.addEventListener('click', deleteBook);
                 deleteButton.style.display = 'block';
 
                 modalName.textContent = 'Редактирование книги';
@@ -216,36 +214,37 @@ function submitCreate() {
 
 // Сохранение редактирования книги
 function submitEdit() {
-    // const formData = getFormData();
-    //
-    // fetch('/catalog/submit-edit', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    //     },
-    //     body: JSON.stringify(formData)
-    // })
-    //     .then(response => {
-    //         if (!response.ok) {
-    //             throw new Error('Не удалось выполнить Fetch-запрос (отправка формы)');
-    //         }
-    //         return response.json();
-    //     })
-    //     .then(data => {
-    //         console.log('Success:', data);
-    //     })
-    //     .catch((error) => {
-    //         console.error('Error:', error);
-    //     });
+    const formData = getFormData();
+
+    fetch('/catalog/submit-edit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => {
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                return response.json().then(errorData => {
+                    throw new Error(errorData.error);
+                });
+            }
+        })
+        .catch(error => {
+            alert('Ошибка: ' + error.message);
+            console.error(error);
+        });
 }
 
 // Удаление книги
-function deleteBook(id) {
+function deleteBook() {
     const confirmation = confirm("Вы уверены, что хотите удалить эту книгу?");
 
     if (confirmation) {
-        fetch(`/catalog/delete/${id}`, {
+        fetch(`/catalog/delete/${book.id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

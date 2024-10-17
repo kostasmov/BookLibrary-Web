@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\BookRequest;
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\Issuance;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -114,6 +115,14 @@ class CatalogController extends Controller
 
         if (!$book) {
             return response()->json(['message' => 'Книга не найдена'], 400);
+        }
+
+        $isIssued = Issuance::where('book_id', $id)
+            ->where('status', '!=', 'pending')
+            ->exists();
+
+        if ($isIssued) {
+            return response()->json(['message' => 'Невозможно удалить книгу - она числится в выдачах'], 400);
         }
 
         //$book->delete();
