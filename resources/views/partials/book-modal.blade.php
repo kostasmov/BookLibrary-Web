@@ -5,18 +5,18 @@
             <button id="close" class="round-button close" onclick="closeModal()" type="button"><i class="fa-solid fa-xmark"></i></button>
         </div>
 
-        <form class="form-container">
+        <form id="book-form" class="form-container">
             <div class="form-inputs">
                 <div class="form-group" style="width: 100%">
                     <label for="title">Название</label>
-                    <input type="text" id="title" name="title">
+                    <input type="text" id="title" name="title" maxlength="160">
                 </div>
 
                 <div class="authors-row">
                     <label>Авторы</label>
                     <div class="authors-input">
-                        <input id="author-fname" type="text" placeholder="Имя">
-                        <input id="author-lname" type="text" placeholder="Фамилия">
+                        <input id="author-fname" type="text" placeholder="Имя" maxlength="30">
+                        <input id="author-lname" type="text" placeholder="Фамилия" maxlength="30">
                         <button type="button" id="add-author-button" class="round-button green"><i class="fa-solid fa-plus"></i></button>
                     </div>
                     <div id="author-list" class="author-list">
@@ -30,7 +30,7 @@
 
                 <div class="form-group">
                     <label for="publisher">Издатель</label>
-                    <input type="text" id="publisher" name="publisher">
+                    <input type="text" id="publisher" name="publisher" maxlength="50">
                 </div>
 
                 <div class="form-group">

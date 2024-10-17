@@ -63,8 +63,8 @@
                         @endif
                     </td>
 
-                    <td>{{ $book->publisher }}</td>
-                    <td>{{ $book->book_year }}</td>
+                    <td>{{ $book->publisher ?? '-' }}</td>
+                    <td>{{ $book->book_year ?? '-' }}</td>
                     <td>{{ $book->type }}</td>
                     <td>{{ $book->amount }}</td>
                     <td>{{ $book->issuances }}</td>

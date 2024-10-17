@@ -199,43 +199,48 @@ function submitCreate() {
     })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Не удалось выполнить Fetch-запрос (отправка формы)');
+                return response.json().then(errorData => {
+                    throw new Error(errorData.error);
+                });
             }
             return response.json();
+
         })
         .then(data => {
-            console.log('Success:', data);
+            window.location.reload();
+
         })
-        .catch((error) => {
-            console.error('Error:', error);
+        .catch(error => {
+            alert('Ошибка: ' + error.message);
+            console.error(error);
         });
 }
 
 
 // Сохранение редактирования книги
 function submitEdit() {
-    const formData = getFormData();
-
-    fetch('/catalog/submit-edit', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        },
-        body: JSON.stringify(formData)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Не удалось выполнить Fetch-запрос (отправка формы)');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Success:', data);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+    // const formData = getFormData();
+    //
+    // fetch('/catalog/submit-edit', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    //     },
+    //     body: JSON.stringify(formData)
+    // })
+    //     .then(response => {
+    //         if (!response.ok) {
+    //             throw new Error('Не удалось выполнить Fetch-запрос (отправка формы)');
+    //         }
+    //         return response.json();
+    //     })
+    //     .then(data => {
+    //         console.log('Success:', data);
+    //     })
+    //     .catch((error) => {
+    //         console.error('Error:', error);
+    //     });
 }
 
 

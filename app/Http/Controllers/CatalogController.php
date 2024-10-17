@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
+use App\Models\Author;
 use App\Models\Book;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -56,9 +59,47 @@ class CatalogController extends Controller
         }
     }
 
-    public function createBook(Request $request): JsonResponse
+    public function createBook(BookRequest $request): JsonResponse
     {
-        return response()->json(['message' => 'Fetch работает (create)',]);
+        DB::beginTransaction();
+
+        try {
+            $validatedData = $request->validated();
+
+            $book = new Book();
+            $book->title = $validatedData['title'];
+            $book->publisher = $validatedData['publisher'];
+            $book->book_year = $validatedData['year'];
+            $book->type = $validatedData['type'];
+            $book->amount = $validatedData['amount'];
+            $book->save();
+
+            $authorIds = [];
+
+            foreach ($validatedData['authors'] as $authorData) {
+                $author = Author::firstOrCreate([
+                    'first_name' => $authorData['first_name'],
+                    'last_name' => $authorData['last_name']
+                ]);
+
+                $authorIds[] = $author->id;
+            }
+
+            $book->authors()->sync($authorIds);
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Книга успешно создана',
+            ]);
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'message' => 'Произошла ошибка при создании книги',
+                'error' => $e->getMessage(),
+            ], 400);
+        }
     }
 
     public function editBook(Request $request): JsonResponse

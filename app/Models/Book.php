@@ -12,6 +12,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static find(mixed $bookId)
  * @property integer $id
  * @property integer $amount
+ * @property mixed $title
+ * @property mixed $publisher
+ * @property mixed $type
+ * @property mixed $book_year
  */
 class Book extends Model
 {
