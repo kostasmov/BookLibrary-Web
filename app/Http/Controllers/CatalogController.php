@@ -7,6 +7,7 @@ use App\Models\Author;
 use App\Models\Book;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -105,5 +106,18 @@ class CatalogController extends Controller
     public function editBook(Request $request): JsonResponse
     {
         return response()->json(['message' => 'Fetch работает (edit)',]);
+    }
+
+    public function deleteBook($id): JsonResponse
+    {
+        $book = Book::find($id);
+
+        if (!$book) {
+            return response()->json(['message' => 'Книга не найдена'], 400);
+        }
+
+        //$book->delete();
+
+        return response()->json(['message' => 'Книга успешно удалена']);
     }
 }

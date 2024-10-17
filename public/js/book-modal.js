@@ -51,6 +51,7 @@ const authorList = document.getElementById('author-list');
 let book;
 
 
+
 // Открыть окно регистрации читателя
 openCreateModalButton.onclick = function () {
     titleInput.value = '';
@@ -69,7 +70,6 @@ openCreateModalButton.onclick = function () {
     modalName.textContent = 'Создание книги';
     bookModal.style.display = 'flex';
 }
-
 
 // Открыть окно редактирования пользователя
 openEditModalButtons.forEach(button => {
@@ -109,6 +109,9 @@ openEditModalButtons.forEach(button => {
                 });
 
                 saveButton.addEventListener('click', submitEdit);
+                deleteButton.addEventListener('click', function() {
+                    deleteBook(bookId);
+                });
                 deleteButton.style.display = 'block';
 
                 modalName.textContent = 'Редактирование книги';
@@ -121,15 +124,14 @@ openEditModalButtons.forEach(button => {
     });
 });
 
-
 // Закрыть модальное окно
 function closeModal() {
     bookModal.style.display = "none";
 
     saveButton.removeEventListener('click', submitCreate);
     saveButton.removeEventListener('click', submitEdit);
+    deleteButton.removeEventListener('click', deleteBook);
 }
-
 
 
 
@@ -198,24 +200,19 @@ function submitCreate() {
         body: JSON.stringify(formData)
     })
         .then(response => {
-            if (!response.ok) {
+            if (response.ok) {
+                window.location.reload();
+            } else {
                 return response.json().then(errorData => {
                     throw new Error(errorData.error);
                 });
             }
-            return response.json();
-
-        })
-        .then(data => {
-            window.location.reload();
-
         })
         .catch(error => {
             alert('Ошибка: ' + error.message);
             console.error(error);
         });
 }
-
 
 // Сохранение редактирования книги
 function submitEdit() {
@@ -241,6 +238,35 @@ function submitEdit() {
     //     .catch((error) => {
     //         console.error('Error:', error);
     //     });
+}
+
+// Удаление книги
+function deleteBook(id) {
+    const confirmation = confirm("Вы уверены, что хотите удалить эту книгу?");
+
+    if (confirmation) {
+        fetch(`/catalog/delete/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            }
+        })
+            .then(response => {
+                console.log(response);
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    return response.json().then(errorData => {
+                        throw new Error(errorData.message);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Ошибка: " + error.message);
+            });
+    }
 }
 
 

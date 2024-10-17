@@ -34,6 +34,7 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/issuances', [IssuanceController::class, 'index'])->name('issuances');
 
     Route::post('/get-book', [CatalogController::class, 'getBook']);
+    Route::delete('/catalog/delete/{id}', [CatalogController::class, 'deleteBook']);
     Route::post('/catalog/submit-create', [CatalogController::class, 'createBook']);
     Route::post('/catalog/submit-edit', [CatalogController::class, 'editBook']);
 });
