@@ -53,10 +53,6 @@ let book;
 
 // Открыть окно регистрации читателя
 openCreateModalButton.onclick = function () {
-    bookModal.style.display = 'flex';
-    modalName.textContent = 'Создание книги';
-    deleteButton.style.display = 'none';
-
     titleInput.value = '';
     publisherInput.value = '';
     yearInput.value = '2024';
@@ -68,6 +64,10 @@ openCreateModalButton.onclick = function () {
     updateButtons();
 
     saveButton.addEventListener('click', submitCreate);
+    deleteButton.style.display = 'none';
+
+    modalName.textContent = 'Создание книги';
+    bookModal.style.display = 'flex';
 }
 
 
@@ -108,11 +108,11 @@ openEditModalButtons.forEach(button => {
                     addAuthor(author.first_name, author.last_name);
                 });
 
-                bookModal.style.display = "flex";
-                modalName.textContent = 'Редактирование книги';
+                saveButton.addEventListener('click', submitEdit);
                 deleteButton.style.display = 'block';
 
-               saveButton.addEventListener('click', submitEdit);
+                modalName.textContent = 'Редактирование книги';
+                bookModal.style.display = "flex";
             })
             .catch(error => {
                 alert(error);
@@ -123,7 +123,7 @@ openEditModalButtons.forEach(button => {
 
 
 // Закрыть модальное окно
-closeModalButton.onclick = function () {
+function closeModal() {
     bookModal.style.display = "none";
 
     saveButton.removeEventListener('click', submitCreate);
@@ -132,16 +132,8 @@ closeModalButton.onclick = function () {
 
 
 
+
 //  ФУНКЦИИ И ДОП. ОБРАБОТЧИКИ
-
-
-
-// Удаление автора
-function removeAuthor(element) {
-    // Находим родительский элемент .author-name и удаляем его
-    const authorName = element.closest('.author-name');
-    authorName.remove();
-}
 
 // Установка количества книг и сверка с числом выдач
 decreaseButton.addEventListener('click', function () {
@@ -152,7 +144,6 @@ decreaseButton.addEventListener('click', function () {
 
     updateButtons();
 });
-
 increaseButton.addEventListener('click', function () {
     let currentAmount = parseInt(amountInput.value);
     amountInput.value = currentAmount + 1;
@@ -263,6 +254,12 @@ addAuthorButton.addEventListener('click', function() {
     }
 });
 
+// Удаление автора
+function removeAuthor(element) {
+    // Находим родительский элемент .author-name и удаляем его
+    const authorName = element.closest('.author-name');
+    authorName.remove();
+}
 
 // Внесение имени автора в список авторов
 function addAuthor(first_name, last_name) {

@@ -20,17 +20,17 @@
             <div class="form-row">
                 <div class="form-input">
                     <label for="login">Логин</label>
-                    <input type="text" id="login" name="login" value="{{ $user->login }}" required>
+                    <input type="text" id="login" name="login" maxlength="20" value="{{ $user->login }}" required>
                 </div>
                 <div class="form-input">
                     <label for="email">Почта</label>
-                    <input type="email" id="email" name="email" value="{{ $user->reader->email }}">
+                    <input type="email" id="email" name="email" maxlength="255" value="{{ $user->reader->email }}">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-input">
                     <label for="phone">Номер телефона</label>
-                    <input type="tel" id="phone" name="phone" value='{{ $user->reader->phone }}'>
+                    <input type="tel" id="phone" name="phone" maxlength="11" value='{{ $user->reader->phone }}'>
                 </div>
                 <div class="form-input">
                     <label for="group">Группа</label>
@@ -68,6 +68,6 @@
     @endif
 
     @if ($errors->any())
-        <script>alert('{{ $errors->first() }}');</script>
+        <script>alert('Ошибка: {{ $errors->first() }}');</script>
     @endif
 @endsection

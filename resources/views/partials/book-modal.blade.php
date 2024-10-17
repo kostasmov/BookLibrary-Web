@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="form-row">
             <h2 id="modal-name"></h2>
-            <button id="close" class="round-button close" type="button"><i class="fa-solid fa-xmark"></i></button>
+            <button id="close" class="round-button close" onclick="closeModal()" type="button"><i class="fa-solid fa-xmark"></i></button>
         </div>
 
         <form class="form-container">
