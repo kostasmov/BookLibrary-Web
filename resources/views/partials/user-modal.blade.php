@@ -9,27 +9,27 @@
             <div class="form-inputs">
                 <div class="form-group">
                     <label for="firstName">Имя</label>
-                    <input type="text" id="firstName" name="firstName">
+                    <input type="text" id="firstName" name="firstName" maxlength="30">
                 </div>
 
                 <div class="form-group">
                     <label for="lastName">Фамилия</label>
-                    <input type="text" id="lastName" name="lastName">
+                    <input type="text" id="lastName" name="lastName" maxlength="30">
                 </div>
 
                 <div class="form-group">
                     <label for="login">Логин</label>
-                    <input type="text" id="login" name="login">
+                    <input type="text" id="login" name="login" maxlength="20">
                 </div>
 
                 <div class="form-group" id="password-group">
                     <label for="password">Пароль</label>
-                    <input type="text" id="password" name="password">
+                    <input type="text" id="password" name="password" maxlength="30">
                 </div>
 
-                    <div class="form-group">
-                        <label for="group">Группа</label>
-                        <input type="text" id="group" name="group">
+                <div class="form-group">
+                    <label for="group">Группа</label>
+                    <input type="text" id="group" name="group" placeholder="И/б-20-1-о">
                 </div>
             </div>
 

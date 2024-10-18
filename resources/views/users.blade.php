@@ -47,7 +47,7 @@
             </thead>
             <tbody>
             @foreach ($users as $user)
-                <tr id="user-{{ $user->id }}">
+                <tr data-id="{{ $user->id }}">
                     <td><i class="edit-btn fa-solid fa-pen-to-square"></i></td>
                     <td>{{ $user->login }}</td>
                     <td>{{ $user->reader->first_name }} {{ $user->reader->last_name }}</td>

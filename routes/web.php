@@ -33,6 +33,10 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
     Route::get('/issuances', [IssuanceController::class, 'index'])->name('issuances');
 
+    Route::delete('/users/delete/{id}', [UsersController::class, 'deleteUser']);
+    Route::post('/users/submit-register', [UsersController::class, 'createUser']);
+    Route::post('/users/submit-edit', [UsersController::class, 'editUser']);
+
     Route::post('/get-book', [CatalogController::class, 'getBook']);
     Route::delete('/catalog/delete/{id}', [CatalogController::class, 'deleteBook']);
     Route::post('/catalog/submit-create', [CatalogController::class, 'createBook']);

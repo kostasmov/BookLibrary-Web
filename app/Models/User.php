@@ -11,12 +11,12 @@ use Illuminate\Notifications\Notifiable;
 /**
  * @property mixed $reader
  * @property mixed $login
- * @property mixed $email
  * @property mixed $password
  * @property mixed $role
  * @property integer $id
  * @method static where(string $string, $id)
  * @method static paginate(int $int)
+ * @method static create(array $array)
  */
 class User extends Authenticatable
 {
@@ -29,7 +29,6 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'login',
-        'email',
         'password',
         'role',
         'reader_id'
