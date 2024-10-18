@@ -13,7 +13,27 @@ class LibraryController extends Controller
 {
     public function index(): View
     {
-        $books = Book::paginate(6);
+        // Получаем параметр сортировки из запроса или задаем значение по умолчанию
+        $sort = request('sort', 'date');
+
+        // Начинаем запрос к модели Book и применяем сортировку
+        $books = Book::query();
+
+        switch ($sort) {
+            case 'title':
+                $books->orderBy('title');
+                break;
+            case 'author':
+                $books->orderBy('author');
+                break;
+            case 'date':
+            default:
+                $books->orderBy('created_at', 'desc');
+                break;
+        }
+
+        // Выполняем пагинацию
+        $books = $books->paginate(6);
 
         foreach ($books as $book) {
             $book->status = $this->getBookStatus($book);
