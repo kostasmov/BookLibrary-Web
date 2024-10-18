@@ -257,7 +257,6 @@ function deleteBook() {
             }
         })
             .then(response => {
-                console.log(response);
                 if (response.ok) {
                     window.location.reload();
                 } else {

@@ -26,7 +26,7 @@ const loginInput = document.getElementById('login');
 const passwordInput = document.getElementById('password');
 const groupInput = document.getElementById('group');
 
-//let user;
+let userId;
 
 
 
@@ -54,8 +54,7 @@ openEditModalButtons.forEach(button => {
         const row = button.closest('tr');
         const cells = row.getElementsByTagName('td');
 
-        let userId = row.getAttribute('data-id');
-        console.log(userId);
+        userId = row.getAttribute('data-id');
 
         let login = cells[1].innerText;
         let group = (cells[4].innerText !== '-') ? cells[4].innerText : '';
@@ -169,29 +168,29 @@ function submitEdit() {
 
 // Удаление книги
 function deleteUser() {
-    // const confirmation = confirm("Вы уверены, что хотите удалить эту книгу?");
-    //
-    // if (confirmation) {
-    //     fetch(`/catalog/delete/${book.id}`, {
-    //         method: 'DELETE',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-    //         }
-    //     })
-    //         .then(response => {
-    //             console.log(response);
-    //             if (response.ok) {
-    //                 window.location.reload();
-    //             } else {
-    //                 return response.json().then(errorData => {
-    //                     throw new Error(errorData.message);
-    //                 });
-    //             }
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //             alert("Ошибка: " + error.message);
-    //         });
-    // }
+    const confirmation = confirm("Вы уверены, что хотите удалить пользователя?");
+
+    if (confirmation) {
+        fetch(`/users/delete/${userId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            }
+        })
+            .then(response => {
+                console.log(response);
+                if (response.ok) {
+                    window.location.reload();
+                } else {
+                    return response.json().then(errorData => {
+                        throw new Error(errorData.message);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert("Ошибка: " + error.message);
+            });
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
 use App\Http\Requests\UserRegisterRequest;
+use App\Models\Issuance;
 use App\Models\Reader;
 use App\Models\User;
 use Exception;
@@ -107,22 +108,28 @@ class UsersController extends Controller
 
     public function deleteUser($id): JsonResponse
     {
-//        $book = Book::find($id);
-//
-//        if (!$book) {
-//            return response()->json(['message' => 'Книга не найдена'], 400);
-//        }
-//
-//        $isIssued = Issuance::where('book_id', $id)
-//            ->where('status', '!=', 'pending')
-//            ->exists();
-//
-//        if ($isIssued) {
-//            return response()->json(['message' => 'Невозможно удалить книгу - она числится в выдачах'], 400);
-//        }
-//
-//        $book->delete();
-//
-//        return response()->json(['message' => 'Книга успешно удалена']);
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['message' => 'Пользователь не найден'], 400);
+        }
+
+        $isMentioned = Issuance::where('reader_id', $user->reader->id)
+            ->where('status', '!=', 'pending')
+            ->exists();
+
+        if ($isMentioned) {
+            return response()->json(['message' => 'Невозможно удалить пользователя - он числится в выдачах'], 400);
+        }
+
+        DB::transaction(function () use ($user) {
+            if ($user->reader) {
+                $user->reader->delete();
+            }
+
+            $user->delete();
+        });
+
+        return response()->json(['message' => 'Пользователь успешно удалён']);
     }
 }

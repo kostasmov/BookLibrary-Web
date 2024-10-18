@@ -43,8 +43,8 @@ class ProfileController extends Controller
         }
 
         $validatedData = $request->validate([
-            'old-pass' => ['required', function ($attribute, $value, $fail) {
-                global $user;
+            'old-pass' => ['required', function ($attribute, $value, $fail) use ($user) {
+                //global $user;
                 if (!Hash::check($value, $user->password)) {
                     $fail('Неверно указан старый пароль');
                 }
