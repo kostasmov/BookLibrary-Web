@@ -38,6 +38,10 @@ class IssuanceController extends Controller
             case 'returned':
                 $issuance->return_date = (new DateTime())->format('Y-m-d');
                 break;
+            case 'rejected':
+                $issuance->book_date = (new DateTime())->format('Y-m-d');
+                $issuance->return_date = (new DateTime())->format('Y-m-d');
+                break;
             default:
                 break;
         }

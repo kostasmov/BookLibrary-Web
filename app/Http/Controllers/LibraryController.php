@@ -13,7 +13,7 @@ class LibraryController extends Controller
 {
     public function index(): View
     {
-        $sort = request('sort', 'date');
+        $sort = request('sort');
         $search = request('search');
 
         $books = Book::query();

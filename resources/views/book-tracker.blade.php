@@ -18,14 +18,16 @@
 @section('content')
     <div class="table-container">
         <div class="controls">
-            <div class="sort-container">
-                <label for="sort-select">Сортировать по: </label>
-                <select id="sort-select">
-                    <option value="return-date">Дата возврата</option>
-                    <option value="return-date">Дата выдачи</option>
-                    <option value="return-date">Название</option>
-                </select>
-            </div>
+            <form id="sortForm" method="get" action="{{ route('tracker') }}">
+                <div class="sort-container">
+                    <label for="sort-select">Сортировать по: </label>
+                    <select id="sort-select" name="sort" onchange="document.getElementById('sortForm').submit();">
+                        <option value="issue" {{ request('sort') == 'issue' ? 'selected' : '' }}>Дата выдачи</option>
+                        <option value="return" {{ request('sort') == 'return' ? 'selected' : '' }}>Дата возврата</option>
+                        <option value="title" {{ request('sort') == 'title' ? 'selected' : '' }}>Название</option>
+                    </select>
+                </div>
+            </form>
 
             {{ $issuances->links('vendor.pagination.custom-table') }}
         </div>
