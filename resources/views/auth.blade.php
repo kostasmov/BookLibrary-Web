@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <title>Авторизация</title>
         <link rel="stylesheet" href={{ asset('css/style.css') }}>
-        {{--    @vite(['resources/css/style.css'])--}}
     </head>
 
     <body>

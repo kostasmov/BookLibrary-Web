@@ -32,6 +32,21 @@
             </div>
 
             <div class="functions-right">
+{{--                <button id="issuanceReturn" class="yellow">--}}
+{{--                    <i class="fa-solid fa-box-open"></i>--}}
+{{--                    <span>Возврат</span>--}}
+{{--                </button>--}}
+
+{{--                <button id="issuanceAccept" class="yellow">--}}
+{{--                    <i class="fa-solid fa-check"></i>--}}
+{{--                    <span>Выдать</span>--}}
+{{--                </button>--}}
+
+{{--                <button id="issuanceReject" class="grey">--}}
+{{--                    <i class="fa-solid fa-xmark"></i>--}}
+{{--                    <span>Отказ</span>--}}
+{{--                </button>--}}
+
                 {{ $issuances->links('vendor.pagination.custom-table') }}
             </div>
         </div>
@@ -57,7 +72,8 @@
                             class="expired"
                         @endif
                     >
-                        {{ $issuance->return_date ?? '-' }}</td>
+                        {{ $issuance->return_date ?? '-' }}
+                    </td>
                     <td>
                         <span class="status {{ $issuance->status }}">
                             {{ $statuses[$issuance->status] }}
@@ -71,5 +87,6 @@
 @endsection
 
 @section('foot-scripts')
-    <script src="{{ asset('js/table.js') }}"></script>
+{{--    <script src="{{ asset('js/table.js') }}"></script>--}}
+    <script src="{{ asset('js/issuances.js') }}"></script>
 @endsection

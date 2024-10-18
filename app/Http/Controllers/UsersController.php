@@ -98,10 +98,15 @@ class UsersController extends Controller
 
     public function deleteUser($id): JsonResponse
     {
+        $currentUserId = auth()->id();
         $user = User::find($id);
 
         if (!$user) {
             return response()->json(['message' => 'Пользователь не найден'], 400);
+        }
+
+        if ($currentUserId == $id) {
+            return response()->json(['message' => 'Невозможно удалить самого себя'], 400);
         }
 
         $isMentioned = Issuance::where('reader_id', $user->reader->id)
