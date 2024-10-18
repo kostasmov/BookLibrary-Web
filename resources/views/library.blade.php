@@ -51,3 +51,18 @@
         <script>alert( '{{ $errors->first() }}' );</script>
     @endif
 @endsection
+
+@section('foot-scripts')
+    <script>
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                /**
+                 * @type {HTMLInputElement}
+                 */
+                const searchInput = document.getElementById('searchInput');
+                const searchQuery = searchInput.value;
+                window.location.href = `?search=${encodeURIComponent(searchQuery)}`;
+            }
+        }
+    </script>
+@endsection

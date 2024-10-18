@@ -54,7 +54,7 @@ function sendStatusUpdate(newStatus) {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         },
-        body: JSON.stringify({ issuanceId, status: newStatus })
+        body: JSON.stringify({issuanceId, status: newStatus})
     })
         .then(response => {
             if (response.ok) {

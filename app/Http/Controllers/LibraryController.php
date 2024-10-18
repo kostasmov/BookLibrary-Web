@@ -14,8 +14,20 @@ class LibraryController extends Controller
     public function index(): View
     {
         $sort = request('sort', 'date');
+        $search = request('search');
 
         $books = Book::query();
+
+        if ($search) {
+            $books->where(function($query) use ($search) {
+                $query->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('publisher', 'LIKE', "%{$search}%")
+                    ->orWhereHas('authors', function ($query) use ($search) {
+                        $query->where('first_name', 'LIKE', "%{$search}%")
+                            ->orWhere('last_name', 'LIKE', "%{$search}%");
+                    });
+            });
+        }
 
         switch ($sort) {
             case 'title':
@@ -103,8 +115,7 @@ class LibraryController extends Controller
         return redirect()->route('tracker')->with('success', 'Заявка отправлена!');
     }
 
-    //решил не делать новый контроллер, а дополнить этот
-    //отображает информацию о библиотеке
+    // Доп страница с информацией о библиотеке и картой
     public function about(): View
     {
         return view('about-library');
