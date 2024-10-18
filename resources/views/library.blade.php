@@ -25,16 +25,18 @@
     <div class="control-bar">
         @include('partials.search-bar')
 
-        <form id="sortForm" method="GET" action="{{ route('library') }}">
+        <form id="sortForm" method="get" action="{{ route('library') }}">
             <div class="sort-container">
                 <label for="sort">Сортировать по:</label>
                 <select id="sort" class="sort-select" name="sort" onchange="document.getElementById('sortForm').submit();">
-                    <option value="date" {{ request('sort') == 'date' ? 'selected' : '' }}>Дата публикации</option>
+                    <option value="" {{ request('sort') == '' ? 'selected' : '' }}>-</option>
+                    <option value="year" {{ request('sort') == 'year' ? 'selected' : '' }}>Год публикации</option>
                     <option value="title" {{ request('sort') == 'title' ? 'selected' : '' }}>Название</option>
-                    <option value="author" {{ request('sort') == 'author' ? 'selected' : '' }}>Автор</option>
                 </select>
             </div>
         </form>
+
+{{--        @include('partials.filter')--}}
     </div>
 
     <div class="book-grid">
