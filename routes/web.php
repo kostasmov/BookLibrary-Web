@@ -25,6 +25,8 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::post('/library/request/{bookID}', [LibraryController::class, 'makeRequest'])->name('library.request');
 
     Route::get('/book-tracker', [BookTrackerController::class, 'index'])->name('tracker');
+    
+    Route::get('/about-library', [LibraryController::class, 'about'])->name('about-library');
 });
 
 

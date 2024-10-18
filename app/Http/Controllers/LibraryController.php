@@ -15,14 +15,14 @@ class LibraryController extends Controller
     {
         $books = Book::paginate(6);
 
-            foreach ($books as $book) {
-                $book->status = $this->getBookStatus($book);
-            }
+        foreach ($books as $book) {
+            $book->status = $this->getBookStatus($book);
+        }
 
         return view('library', compact('books'));
     }
 
-    private function getBookStatus(Book $book): String
+    private function getBookStatus(Book $book): string
     {
         $user = Auth::user();
         if (!$user instanceof User) {
@@ -53,7 +53,7 @@ class LibraryController extends Controller
         return 'available';
     }
 
-    public function makeRequest($bookId):  RedirectResponse
+    public function makeRequest($bookId): RedirectResponse
     {
         $book = Book::findOrFail($bookId);
         $user = Auth::user();
@@ -85,5 +85,12 @@ class LibraryController extends Controller
         ]);
 
         return redirect()->route('tracker')->with('success', 'Заявка отправлена!');
+    }
+
+    //решил не делать новый контроллер, а дополнить этот
+    //отображает информацию о библиотеке
+    public function about(): View
+    {
+        return view('about-library');
     }
 }
