@@ -1,3 +1,17 @@
+@font-face {
+    font-family: 'Involve';
+    src: url('../fonts/Involve-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Involve';
+    src: url('../fonts/Involve-Bold.ttf') format('truetype');
+    font-style: normal;
+    font-weight: bold;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,14 +19,14 @@
 }
 body {
     background-color: #FFCB44;
-    font-family: Involve, sans-serif;
+    font-family: "Involve", sans-serif;
     display: flex;
 }
 input {
     border: 1px solid #ccc;
     border-radius: 10px;
     outline-color: #3E4CD1;
-    font-family: Involve, sans-serif;
+    font-family: "Involve", sans-serif;
 }
 select {
     border: 1px solid #ccc;
