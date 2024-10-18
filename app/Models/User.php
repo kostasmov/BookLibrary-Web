@@ -18,6 +18,7 @@ use Illuminate\Notifications\Notifiable;
  * @method static paginate(int $int)
  * @method static create(array $array)
  * @method static find($id)
+ * @method static findOrFail(mixed $userId)
  */
 class User extends Authenticatable
 {

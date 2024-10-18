@@ -140,30 +140,30 @@ function submitRegister() {
 
 // Сохранение редактирования книги
 function submitEdit() {
-    // const formData = getFormData();
-    // formData['bookId'] = book.id;
-    //
-    // fetch('/catalog/submit-edit', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-    //     },
-    //     body: JSON.stringify(formData)
-    // })
-    //     .then(response => {
-    //         if (response.ok) {
-    //             window.location.reload();
-    //         } else {
-    //             return response.json().then(errorData => {
-    //                 throw new Error(errorData.error);
-    //             });
-    //         }
-    //     })
-    //     .catch(error => {
-    //         alert('Ошибка: ' + error.message);
-    //         console.error(error);
-    //     });
+    const formData = getFormData();
+    formData['userId'] = userId;
+
+    fetch('/users/submit-edit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => {
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                return response.json().then(errorData => {
+                    throw new Error(errorData.error);
+                });
+            }
+        })
+        .catch(error => {
+            alert('Ошибка: ' + error.message);
+            console.error(error);
+        });
 }
 
 // Удаление книги

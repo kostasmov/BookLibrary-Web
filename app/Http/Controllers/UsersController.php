@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
+use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Models\Issuance;
 use App\Models\Reader;
@@ -56,54 +57,43 @@ class UsersController extends Controller
         }
     }
 
-    public function editUser(BookRequest $request): JsonResponse
+    public function editUser(UserEditRequest $request): JsonResponse
     {
-//        DB::beginTransaction();
-//
-//        try {
-//            $validatedData = $request->validated();
-//
-//            $book = Book::findOrFail($validatedData['bookId']);
-//
-//            if (!$book) {
-//                throw new Exception('Книга не найдена');
-//            }
-//
-//            $book->title = $validatedData['title'];
-//            $book->publisher = $validatedData['publisher'];
-//            $book->book_year = $validatedData['year'];
-//            $book->type = $validatedData['type'];
-//            $book->amount = $validatedData['amount'];
-//
-//            $authorIds = [];
-//
-//            foreach ($validatedData['authors'] as $authorData) {
-//                $author = Author::firstOrCreate([
-//                    'first_name' => $authorData['first_name'],
-//                    'last_name' => $authorData['last_name']
-//                ]);
-//
-//                $authorIds[] = $author->id;
-//            }
-//
-//            $book->authors()->sync($authorIds);
-//
-//            $book->save();
-//
-//            DB::commit();
-//
-//            return response()->json([
-//                    'message' => 'Книга успешно обновлена',
-//                    'book' => $book]
-//            );
-//        } catch (Exception $e) {
-//            DB::rollBack();
-//
-//            return response()->json([
-//                'message' => 'Не удалось обновить книгу',
-//                'error' => $e->getMessage()
-//            ], 400);
-//        }
+        try {
+            DB::beginTransaction();
+
+            $validated = $request->validated();
+
+            $user = User::findOrFail($validated['userId']);
+
+            if (!$user) {
+                throw new Exception('Пользователь не найден');
+            }
+
+            $user->login = $validated['login'];
+            $user->reader->first_name = $validated['firstName'];
+            $user->reader->last_name = $validated['lastName'];
+            $user->reader->group_code = $validated['group'];
+
+            $user->save();
+            $user->reader->save();
+
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Пользователь успешно обновлён',
+                'user' => $user,
+                'reader' => $user->reader,
+            ]);
+
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'message' => 'Не удалось обновить данные пользователя',
+                'error' => $e->getMessage()
+            ], 400);
+        }
     }
 
     public function deleteUser($id): JsonResponse
