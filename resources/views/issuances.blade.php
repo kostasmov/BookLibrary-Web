@@ -32,20 +32,20 @@
             </div>
 
             <div class="functions-right">
-{{--                <button id="issuanceReturn" class="yellow">--}}
-{{--                    <i class="fa-solid fa-box-open"></i>--}}
-{{--                    <span>Возврат</span>--}}
-{{--                </button>--}}
+                <button id="issuanceReturn" class="yellow">
+                    <i class="fa-solid fa-box-open"></i>
+                    <span>Возврат</span>
+                </button>
 
-{{--                <button id="issuanceAccept" class="yellow">--}}
-{{--                    <i class="fa-solid fa-check"></i>--}}
-{{--                    <span>Выдать</span>--}}
-{{--                </button>--}}
+                <button id="issuanceAccept" class="yellow">
+                    <i class="fa-solid fa-check"></i>
+                    <span>Выдать</span>
+                </button>
 
-{{--                <button id="issuanceReject" class="grey">--}}
-{{--                    <i class="fa-solid fa-xmark"></i>--}}
-{{--                    <span>Отказ</span>--}}
-{{--                </button>--}}
+                <button id="issuanceReject" class="grey">
+                    <i class="fa-solid fa-xmark"></i>
+                    <span>Отказ</span>
+                </button>
 
                 {{ $issuances->links('vendor.pagination.custom-table') }}
             </div>
@@ -63,7 +63,7 @@
             </thead>
             <tbody>
             @foreach ($issuances as $issuance)
-                <tr id="issuance-{{ $issuance->id }}">
+                <tr data-id="{{ $issuance->id }}">
                     <td>{{ $issuance->book->title }}</td>
                     <td>{{ mb_substr($issuance->reader->first_name, 0, 1) }}. {{ $issuance->reader->last_name  }}</td>
                     <td>{{ $issuance->book_date ?? '-' }}</td>
@@ -87,6 +87,6 @@
 @endsection
 
 @section('foot-scripts')
-{{--    <script src="{{ asset('js/table.js') }}"></script>--}}
+    <script src="{{ asset('js/table.js') }}"></script>
     <script src="{{ asset('js/issuances.js') }}"></script>
 @endsection

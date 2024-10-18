@@ -19,19 +19,19 @@
 }
 body {
     background-color: #FFCB44;
-    font-family: "Involve", sans-serif;
+    font-family: 'Involve', sans-serif;
     display: flex;
 }
 input {
     border: 1px solid #ccc;
     border-radius: 10px;
     outline-color: #3E4CD1;
-    font-family: "Involve", sans-serif;
+    font-family: 'Involve', sans-serif;
 }
 select {
     border: 1px solid #ccc;
     border-radius: 10px;
-    font-family: Involve, sans-serif;
+    font-family: 'Involve', sans-serif;
     background-color: white;
 }
 button {
@@ -40,7 +40,7 @@ button {
     text-align: center;
     text-decoration: none;
     font-weight: bold;
-    font-family: Involve, sans-serif;
+    font-family: 'Involve', sans-serif;
 }
 
 button.green {

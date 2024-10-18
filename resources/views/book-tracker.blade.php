@@ -6,7 +6,8 @@
     $statuses = [
         'issued' => 'Выдана',
         'pending' => 'На рассмотрении',
-        'returned' => 'Возвращена'
+        'returned' => 'Возвращена',
+        'rejected' => 'Отказано'
     ]
 @endphp
 
@@ -53,13 +54,13 @@
                             -
                         @endif
                     </td>
-                    <td>{{ $issuance->book_date }}</td>
+                    <td>{{ $issuance->book_date ?? '-' }}</td>
                     <td
                         @if(strtotime($issuance->return_date) < time() && $issuance->status === 'issued')
                             class="expired"
                         @endif
                     >
-                        {{ $issuance->return_date }}
+                        {{ $issuance->return_date ?? '-' }}
                     </td>
                     <td>
                         <span class="status {{$issuance->status}}">
