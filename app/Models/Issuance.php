@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static where(string $string, $id)
  * @method static create(array $array)
  * @method static paginate(int $int)
+ * @method static find(mixed $issuanceId)
  */
 class Issuance extends Model
 {

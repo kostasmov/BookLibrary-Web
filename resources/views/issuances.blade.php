@@ -87,6 +87,6 @@
 @endsection
 
 @section('foot-scripts')
-{{--    <script src="{{ asset('js/table.js') }}"></script>--}}
+    <script src="{{ asset('js/table.js') }}"></script>
     <script src="{{ asset('js/issuances.js') }}"></script>
 @endsection
