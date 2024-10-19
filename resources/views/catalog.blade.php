@@ -13,15 +13,17 @@
             <div class="functions-left">
                 @include('partials.search-bar')
 
-                <div class="sort-container">
-                    <label for="sort-select">Сортировать по: </label>
-                    <select id="sort-select">
-                        <option value="title">Название</option>
-                        <option value="author">Автор</option>
-                        <option value="publisher">Издатель</option>
-                        <option value="amount">Количество</option>
-                    </select>
-                </div>
+                <form id="sortForm" method="get" action="{{ route('catalog') }}">
+                    <div class="sort-container">
+                        <label for="sort-select">Сортировать по: </label>
+                        <select id="sort-select" name="sort" onchange="document.getElementById('sortForm').submit();">
+                            <option value="title" {{ request('sort') == 'title' ? 'selected' : '' }}>Название</option>
+                            <option value="publisher" {{ request('sort') == 'publisher' ? 'selected' : '' }}>Издатель</option>
+                        </select>
+
+                        <input type="hidden" name="search" value="{{ request('search') }}">
+                    </div>
+                </form>
             </div>
 
             <div class="functions-right">
@@ -81,4 +83,17 @@
 @section('foot-scripts')
     <script src="{{ asset('js/table.js') }}"></script>
     <script src="{{ asset('js/book-modal.js') }}"></script>
+
+    <script>
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                /**
+                 * @type {HTMLInputElement}
+                 */
+                const searchInput = document.getElementById('searchInput');
+                const searchQuery = searchInput.value;
+                window.location.href = `?search=${encodeURIComponent(searchQuery)}&sort={{ request('sort') }}`;
+            }
+        }
+    </script>
 @endsection

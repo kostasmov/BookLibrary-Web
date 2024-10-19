@@ -16,7 +16,36 @@ class CatalogController extends Controller
 {
     public function index(): View
     {
-        $books = Book::paginate(8);
+        $sort = request('sort', 'title');
+        $search = request('search');
+        $books = Book::query();
+
+        if ($search) {
+            $books->where(function ($query) use ($search) {
+                $query->where('title', 'LIKE', "%$search%")
+                    ->orWhere('book_year', 'LIKE', "%$search%")
+                    ->orWhere('publisher', 'LIKE', "%$search%")
+                    ->orWhere('type', 'LIKE', "%$search%")
+                    ->orWhereHas('authors', function ($authorQuery) use ($search) {
+                        $authorQuery->where('first_name', 'LIKE', "%$search%")
+                            ->orWhere('last_name', 'LIKE', "%$search%");
+                    });
+            });
+        }
+
+        switch ($sort) {
+            case 'title':
+                $books->orderBy('title');
+                break;
+            case 'publisher':
+                $books->orderBy('publisher');
+                break;
+            default:
+                $books->orderBy('created_at', 'desc');
+                break;
+        }
+
+        $books = $books->paginate(8);
 
         foreach ($books as $book) {
             $book->issuances = $this->countIssuedBooks($book->id);
