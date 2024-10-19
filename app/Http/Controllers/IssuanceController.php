@@ -13,7 +13,45 @@ class IssuanceController extends Controller
 {
     public function index(): View
     {
-        $issuances = Issuance::paginate(8);
+        $sort = request('sort', 'issue');
+        $search = request('search');
+
+        $issuances = Issuance::query();
+
+        if ($search) {
+            $issuances->whereHas('book', function ($query) use ($search) {
+                $query->where('title', 'LIKE', "%$search%");
+            })->orWhereHas('reader', function ($query) use ($search) {
+                $query->where('first_name', 'LIKE', "%$search%")
+                    ->orWhere('last_name', 'LIKE', "%$search%");
+            });
+        }
+
+        switch ($sort) {
+            case 'issue':
+                $issuances->orderByRaw('book_date IS NULL DESC')
+                    ->orderBy('book_date', 'desc');
+                break;
+            case 'return':
+                $issuances->orderByRaw('return_date IS NULL DESC')
+                    ->orderBy('return_date', 'desc');
+                break;
+            case 'title':
+                $issuances->whereHas('book')->join('books', 'books.id', '=', 'issuances.book_id')
+                    ->orderBy('books.title');
+                break;
+            case 'reader':
+                $issuances->whereHas('reader')->join('readers', 'readers.id', '=', 'issuances.reader_id')
+                    ->orderBy('readers.last_name')
+                    ->orderBy('readers.first_name');
+                break;
+            default:
+                $issuances->orderBy('book_date', 'desc');
+                break;
+        }
+
+        $issuances = $issuances->paginate(8);
+
         return view('issuances', compact('issuances'));
     }
 

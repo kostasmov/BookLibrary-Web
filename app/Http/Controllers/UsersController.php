@@ -25,11 +25,11 @@ class UsersController extends Controller
 
         if ($search) {
             $users->where(function($query) use ($search) {
-                $query->where('readers.first_name', 'LIKE', "%{$search}%")
-                    ->orWhere('readers.last_name', 'LIKE', "%{$search}%")
-                    ->orWhere('readers.group_code', 'LIKE', "%{$search}%")
-                    ->orWhere('users.role', 'LIKE', "%{$search}%")
-                    ->orWhere('users.login', 'LIKE', "%{$search}%");
+                $query->where('readers.first_name', 'LIKE', "%$search%")
+                    ->orWhere('readers.last_name', 'LIKE', "%$search%")
+                    ->orWhere('readers.group_code', 'LIKE', "%$search%")
+                    ->orWhere('users.role', 'LIKE', "%$search%")
+                    ->orWhere('users.login', 'LIKE', "%$search%");
             });
         }
 
