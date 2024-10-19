@@ -95,13 +95,13 @@ class IssuanceController extends Controller
         $issuance->status = $request->status;
         $issuance->save();
 
-        try {
-            Log::info('Попытка отправить email на: ' . $issuance->reader->email);
-            Mail::to($issuance->reader->email)->send(new IssuanceStatusChanged($issuance, $statusMessage));
-            Log::info('Email успешно отправлен.');
-        } catch (\Exception $e) {
-            Log::error('Ошибка при отправке email: ' . $e->getMessage());
-        }
+//        try {
+//            Log::info('Попытка отправить email на: ' . $issuance->reader->email);
+//            Mail::to($issuance->reader->email)->send(new IssuanceStatusChanged($issuance, $statusMessage));
+//            Log::info('Email успешно отправлен.');
+//        } catch (\Exception $e) {
+//            Log::error('Ошибка при отправке email: ' . $e->getMessage());
+//        }
 
         return response()->json([
             'message' => 'Успешно обновлено',

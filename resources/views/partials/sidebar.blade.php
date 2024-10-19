@@ -19,9 +19,9 @@
             <li class="{{ Route::is('tracker') ? 'active' : '' }}">
                 <a href="{{ route('tracker') }}"><i class="fas fa-list-alt"></i> Формуляр</a>
             </li>
-            <li class="{{ Route::is('about-library') ? 'active' : '' }}">
-                <a href="{{ route('about-library') }}"><i class="fas fa-info-circle"></i> О библиотеке</a>
-            </li>
+{{--            <li class="{{ Route::is('about-library') ? 'active' : '' }}">--}}
+{{--                <a href="{{ route('about-library') }}"><i class="fas fa-info-circle"></i> О библиотеке</a>--}}
+{{--            </li>--}}
 
             @if ($user->role === 'admin')
                 <li class="{{ Route::is('users') ? 'active' : '' }}">
