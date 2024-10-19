@@ -69,6 +69,7 @@ function sendStatusUpdate(newStatus) {
             alert('Ошибка: ' + error.message);
             console.error(error);
         });
+        
 }
 
 acceptButton.addEventListener('click', () => sendStatusUpdate('issued'));
