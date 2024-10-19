@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\BookRequest;
 use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UserRegisterRequest;
 use App\Models\Issuance;
@@ -18,7 +17,40 @@ class UsersController extends Controller
 {
     public function index(): View
     {
-        $users = User::paginate(8);
+        $sort = request('sort', 'name');
+        $search = request('search');
+        $users = User::query();
+
+        $users->join('readers', 'users.reader_id', '=', 'readers.id');
+
+        if ($search) {
+            $users->where(function($query) use ($search) {
+                $query->where('readers.first_name', 'LIKE', "%{$search}%")
+                    ->orWhere('readers.last_name', 'LIKE', "%{$search}%")
+                    ->orWhere('readers.group_code', 'LIKE', "%{$search}%")
+                    ->orWhere('users.role', 'LIKE', "%{$search}%")
+                    ->orWhere('users.login', 'LIKE', "%{$search}%");
+            });
+        }
+
+        switch ($sort) {
+            case 'name':
+                $users->orderBy('readers.last_name')
+                    ->orderBy('readers.first_name');
+                break;
+            case 'group':
+                $users->orderBy('readers.group_code');
+                break;
+            case 'login':
+                $users->orderBy('login');
+                break;
+            default:
+                $users->orderBy('created_at', 'desc');
+                break;
+        }
+
+        $users = $users->paginate(8);
+
         return view('users', compact('users'));
     }
 

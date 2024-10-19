@@ -14,14 +14,18 @@
             <div class="functions-left">
                 @include('partials.search-bar')
 
-                <div class="sort-container">
-                    <label for="sort-select">Сортировать по: </label>
-                    <select id="sort-select">
-                        <option value="name">Имя</option>
-                        <option value="group">Группа</option>
-                        <option value="login">Логин</option>
-                    </select>
-                </div>
+                <form id="sortForm" method="get" action="{{ route('users') }}">
+                    <div class="sort-container">
+                        <label for="sort-select">Сортировать по: </label>
+                        <select id="sort-select" name="sort" onchange="document.getElementById('sortForm').submit();">
+                            <option value="name" {{ request('sort') == 'name' ? 'selected' : '' }}>Имя</option>
+                            <option value="group" {{ request('sort') == 'group' ? 'selected' : '' }}>Группа</option>
+                            <option value="login" {{ request('sort') == 'login' ? 'selected' : '' }}>Логин</option>
+                        </select>
+
+                        <input type="hidden" name="search" value="{{ request('search') }}">
+                    </div>
+                </form>
             </div>
 
             <div class="functions-right">
@@ -50,7 +54,7 @@
                 <tr data-id="{{ $user->id }}">
                     <td><i class="edit-btn fa-solid fa-pen-to-square"></i></td>
                     <td>{{ $user->login }}</td>
-                    <td>{{ $user->reader->first_name }} {{ $user->reader->last_name }}</td>
+                    <td>{{ $user->reader->last_name }} {{ $user->reader->first_name }} </td>
                     <td>{{ $user->role }}</td>
                     <td>{{ $user->reader->group_code ?? '-' }}</td>
                     <td>{{ $user->reader->email ?? '-' }}</td>
@@ -68,4 +72,17 @@
 @section('foot-scripts')
     <script src="{{ asset('js/table.js') }}"></script>
     <script src="{{ asset('js/user-modal.js') }}"></script>
+
+    <script>
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                /**
+                 * @type {HTMLInputElement}
+                 */
+                const searchInput = document.getElementById('searchInput');
+                const searchQuery = searchInput.value;
+                window.location.href = `?search=${encodeURIComponent(searchQuery)}&sort={{ request('sort') }}`;
+            }
+        }
+    </script>
 @endsection
